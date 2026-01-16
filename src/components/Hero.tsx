@@ -74,12 +74,11 @@ export function Hero() {
 
               {/* Image placeholder */}
               <div className="relative w-full h-full rounded-2xl border-2 border-dashed border-border bg-surface/50 flex items-center justify-center overflow-hidden">
-                <div className="text-center p-6">
-                  <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                    <span className="text-4xl font-bold text-primary">NK</span>
-                  </div>
-                  <p className="text-text-secondary text-sm">Profile Image</p>
-                </div>
+                <img
+                  src="/profile.png"
+                  alt="Profile"
+                  className="w-full h-full object-cover rounded-2xl"
+                />
               </div>
 
               {/* Floating decorative elements */}
