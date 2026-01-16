@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Github, Linkedin, Send } from 'lucide-react';
+import { Mail, Github, Linkedin, Send, Loader2, CheckCircle, XCircle } from 'lucide-react';
 import { SectionTitle } from './ui/SectionTitle';
 import { Card } from './ui/Card';
 import { Button } from './ui/Button';
@@ -26,17 +26,47 @@ const socialLinks = [
     },
 ];
 
+type SubmitStatus = 'idle' | 'loading' | 'success' | 'error';
+
 export function Contact() {
     const [formData, setFormData] = useState({
         name: '',
         email: '',
         message: '',
     });
+    const [status, setStatus] = useState<SubmitStatus>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // Form submission logic would go here
-        console.log('Form submitted:', formData);
+        setStatus('loading');
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
+                    ...formData,
+                }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                // Reset status after 5 seconds
+                setTimeout(() => setStatus('idle'), 5000);
+            } else {
+                setStatus('error');
+                setErrorMessage(result.message || 'Something went wrong. Please try again.');
+            }
+        } catch {
+            setStatus('error');
+            setErrorMessage('Network error. Please check your connection and try again.');
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -140,9 +170,37 @@ export function Contact() {
                                         placeholder="Your message..."
                                     />
                                 </div>
-                                <Button variant="primary" className="w-full">
-                                    <Send size={18} />
-                                    Send Message
+
+                                {/* Status Messages */}
+                                {status === 'success' && (
+                                    <div className="flex items-center gap-2 p-3 bg-green-500/10 border border-green-500/30 rounded-lg text-green-400">
+                                        <CheckCircle size={18} />
+                                        <span>Message sent successfully! I'll get back to you soon.</span>
+                                    </div>
+                                )}
+                                {status === 'error' && (
+                                    <div className="flex items-center gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400">
+                                        <XCircle size={18} />
+                                        <span>{errorMessage}</span>
+                                    </div>
+                                )}
+
+                                <Button
+                                    variant="primary"
+                                    className="w-full"
+                                    disabled={status === 'loading'}
+                                >
+                                    {status === 'loading' ? (
+                                        <>
+                                            <Loader2 size={18} className="animate-spin" />
+                                            Sending...
+                                        </>
+                                    ) : (
+                                        <>
+                                            <Send size={18} />
+                                            Send Message
+                                        </>
+                                    )}
                                 </Button>
                             </form>
                         </Card>
