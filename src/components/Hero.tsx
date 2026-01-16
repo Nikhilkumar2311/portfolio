@@ -80,11 +80,11 @@ export function Hero() {
               />
 
               {/* Gradient border container */}
-              <div className="relative w-full h-full p-[2px] rounded-2xl bg-linear-to-br from-primary via-primary/50 to-secondary">
+              <div className="relative w-full h-full p-0.5 rounded-2xl bg-linear-to-br from-primary via-primary/50 to-secondary">
                 {/* Inner container with image */}
                 <div className="relative w-full h-full rounded-2xl bg-surface overflow-hidden">
                   <img
-                    src="/profile.png"
+                    src="/profile.jpg"
                     alt="Nikhil Kumar - DevOps Cloud Engineer"
                     className="w-full h-full object-cover"
                   />
