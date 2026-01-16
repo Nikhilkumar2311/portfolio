@@ -61,7 +61,7 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Image Placeholder */}
+          {/* Right Side - Profile Image */}
           <motion.div
             className="hidden lg:flex justify-center items-center"
             initial={{ opacity: 0, x: 30 }}
@@ -69,28 +69,69 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             <div className="relative w-80 h-80 xl:w-96 xl:h-96">
-              {/* Decorative background shapes */}
-              <div className="absolute inset-0 bg-linear-to-br from-primary/20 to-secondary/20 rounded-full blur-3xl" />
+              {/* Ambient glow effect */}
+              <motion.div
+                className="absolute inset-0 bg-linear-to-br from-primary/30 via-primary/10 to-secondary/30 rounded-2xl blur-2xl"
+                animate={{
+                  opacity: [0.5, 0.8, 0.5],
+                  scale: [1, 1.05, 1]
+                }}
+                transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+              />
 
-              {/* Image placeholder */}
-              <div className="relative w-full h-full rounded-2xl border-2 border-dashed border-border bg-surface/50 flex items-center justify-center overflow-hidden">
-                <img
-                  src="/profile.png"
-                  alt="Profile"
-                  className="w-full h-full object-cover rounded-2xl"
-                />
+              {/* Gradient border container */}
+              <div className="relative w-full h-full p-[2px] rounded-2xl bg-linear-to-br from-primary via-primary/50 to-secondary">
+                {/* Inner container with image */}
+                <div className="relative w-full h-full rounded-2xl bg-surface overflow-hidden">
+                  <img
+                    src="/profile.png"
+                    alt="Nikhil Kumar - DevOps Cloud Engineer"
+                    className="w-full h-full object-cover"
+                  />
+
+                  {/* Subtle overlay gradient for depth */}
+                  <div className="absolute inset-0 bg-linear-to-t from-background/20 via-transparent to-transparent" />
+                </div>
               </div>
 
-              {/* Floating decorative elements */}
+              {/* Corner accent - top right */}
               <motion.div
-                className="absolute -top-4 -right-4 w-16 h-16 bg-primary/20 rounded-lg"
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 3 }}
+                className="absolute -top-3 -right-3 w-14 h-14 rounded-lg border-2 border-primary/60 bg-primary/10 backdrop-blur-sm"
+                animate={{
+                  y: [0, -8, 0],
+                  rotate: [0, 5, 0]
+                }}
+                transition={{ repeat: Infinity, duration: 3.5, ease: "easeInOut" }}
               />
+
+              {/* Corner accent - bottom left */}
               <motion.div
-                className="absolute -bottom-4 -left-4 w-12 h-12 bg-secondary/20 rounded-full"
-                animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 2.5 }}
+                className="absolute -bottom-3 -left-3 w-10 h-10 rounded-full border-2 border-secondary/60 bg-secondary/10 backdrop-blur-sm"
+                animate={{
+                  y: [0, 8, 0],
+                  scale: [1, 1.1, 1]
+                }}
+                transition={{ repeat: Infinity, duration: 2.8, ease: "easeInOut" }}
+              />
+
+              {/* Small floating dot - top left */}
+              <motion.div
+                className="absolute top-8 -left-6 w-3 h-3 rounded-full bg-primary/60"
+                animate={{
+                  y: [0, -12, 0],
+                  opacity: [0.6, 1, 0.6]
+                }}
+                transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+              />
+
+              {/* Small floating dot - bottom right */}
+              <motion.div
+                className="absolute bottom-8 -right-6 w-2 h-2 rounded-full bg-secondary/60"
+                animate={{
+                  y: [0, 12, 0],
+                  opacity: [0.6, 1, 0.6]
+                }}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut", delay: 0.5 }}
               />
             </div>
           </motion.div>
