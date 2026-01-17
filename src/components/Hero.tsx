@@ -9,10 +9,10 @@ export function Hero() {
       <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Text Content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Side - Text Content (order-2 on mobile to appear below image) */}
           <motion.div
-            className="text-left"
+            className="text-center lg:text-left order-2 lg:order-1"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
@@ -45,7 +45,7 @@ export function Hero() {
 
             {/* CTA Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row items-start gap-4"
+              className="flex flex-col sm:flex-row items-center lg:items-start gap-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.6 }}
@@ -61,14 +61,14 @@ export function Hero() {
             </motion.div>
           </motion.div>
 
-          {/* Right Side - Profile Image */}
+          {/* Right Side - Profile Image (order-1 on mobile to appear above content) */}
           <motion.div
-            className="hidden lg:flex justify-center items-center"
+            className="flex justify-center items-center order-1 lg:order-2"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            <div className="relative w-80 h-80 xl:w-96 xl:h-96">
+            <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96">
               {/* Ambient glow effect */}
               <motion.div
                 className="absolute inset-0 bg-linear-to-br from-primary/30 via-primary/10 to-secondary/30 rounded-2xl blur-2xl"
