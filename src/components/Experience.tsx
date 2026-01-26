@@ -7,7 +7,7 @@ import { experiences, /*certifications*/ } from '../data/experience';
 export function Experience() {
     return (
         <section id="experience" className="py-20 md:py-32">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle
                     title="Experience"
                     subtitle="My professional journey and learning path"

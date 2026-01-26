@@ -14,7 +14,9 @@ function App() {
     <>
       <ParticleNetwork />
       <Navbar />
-      <main>
+      <main className="relative">
+        {/* Global background gradient that stretches across all sections */}
+        <div className="absolute inset-0 bg-linear-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
         <Hero />
         <About />
         <Skills />

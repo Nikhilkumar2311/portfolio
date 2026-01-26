@@ -16,8 +16,8 @@ const iconMap: Record<string, React.ReactNode> = {
 
 export function Skills() {
     return (
-        <section id="skills" className="py-20 md:py-32 bg-surface/30">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="skills" className="py-20 md:py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle
                     title="Skills"
                     subtitle="Technologies and areas I work with"

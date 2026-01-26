@@ -77,8 +77,8 @@ export function Contact() {
     };
 
     return (
-        <section id="contact" className="py-20 md:py-32 bg-surface/30">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="contact" className="py-20 md:py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle
                     title="Get In Touch"
                     subtitle="Have a question or want to work together? Feel free to reach out."

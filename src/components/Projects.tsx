@@ -8,8 +8,8 @@ import { projects } from '../data/projects';
 
 export function Projects() {
     return (
-        <section id="projects" className="py-20 md:py-32 bg-surface/30">
-            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="projects" className="py-20 md:py-32">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <SectionTitle
                     title="Projects"
                     subtitle="Hands-on projects demonstrating DevOps practices"
