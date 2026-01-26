@@ -1,5 +1,71 @@
 import { motion } from "framer-motion";
 import { SectionTitle } from "./ui/SectionTitle";
+import { Card } from "./ui/Card";
+import { Rocket, Cloud, BarChart3, GitBranch, ArrowRight, Laptop, Search, type LucideIcon } from "lucide-react";
+
+// Journey milestones for the timeline
+const journeySteps: { title: string; description: string; icon: LucideIcon; color: string; bgColor: string }[] = [
+  {
+    title: "Full-Stack Developer",
+    description: "Built web apps with frontend & backend",
+    icon: Laptop,
+    color: "text-blue-400",
+    bgColor: "bg-blue-400/10",
+  },
+  {
+    title: "Infrastructure Curious",
+    description: "Explored deployment & scaling challenges",
+    icon: Search,
+    color: "text-purple-400",
+    bgColor: "bg-purple-400/10",
+  },
+  {
+    title: "DevOps Engineer",
+    description: "Automating CI/CD & cloud infrastructure",
+    icon: Rocket,
+    color: "text-primary",
+    bgColor: "bg-primary/10",
+  },
+];
+
+// Value proposition cards - what you deliver
+const valueCards = [
+  {
+    icon: GitBranch,
+    title: "CI/CD Pipelines",
+    description: "Automated testing & deployment workflows",
+    color: "text-primary",
+    bgColor: "bg-primary/10",
+  },
+  {
+    icon: Cloud,
+    title: "Cloud Infrastructure",
+    description: "AWS setup, security & scaling",
+    color: "text-secondary",
+    bgColor: "bg-secondary/10",
+  },
+  {
+    icon: Rocket,
+    title: "Automated Deployments",
+    description: "Zero-downtime releases on every commit",
+    color: "text-green-400",
+    bgColor: "bg-green-400/10",
+  },
+  {
+    icon: BarChart3,
+    title: "Monitoring & Observability",
+    description: "Metrics, alerts & log aggregation",
+    color: "text-amber-400",
+    bgColor: "bg-amber-400/10",
+  },
+];
+
+// Optional: Stats to showcase (uncomment and fill in if you want to use)
+// const stats = [
+//   { value: "10+", label: "Pipelines Configured" },
+//   { value: "7", label: "AWS Services Used" },
+//   { value: "50+", label: "Deployments Automated" },
+// ];
 
 export function About() {
   return (
@@ -7,36 +73,117 @@ export function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionTitle
           title="About Me"
-          subtitle="My journey from full-stack development to DevOps Cloud Engineering"
+          subtitle="Building reliable, automated infrastructure that scales"
         />
 
-        <div className="max-w-3xl mx-auto">
-          <motion.div
-            className="space-y-6 text-text-secondary text-lg leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <p>
-              I started my journey as a full-stack developer, working on
-              building and deploying web applications. This experience gave me a
-              solid foundation in both frontend and backend technologies.
-            </p>
-            <p>
-              While working on real projects, I became more interested in how
-              systems are deployed, automated, and maintained in production. The
-              challenges of deployment and scaling sparked my curiosity about
-              infrastructure and operations.
-            </p>
-            <p>
-              This interest led me to transition into DevOps, where I now focus
-              on CI/CD pipelines, cloud infrastructure, and improving system
-              reliability. I enjoy bridging the gap between development and
-              operations to deliver software more efficiently.
-            </p>
-          </motion.div>
+        {/* Value Proposition Statement */}
+        <motion.div
+          className="max-w-3xl mx-auto text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="text-lg text-text-secondary leading-relaxed">
+            I build and maintain <span className="text-primary font-medium">automated CI/CD pipelines</span> and{" "}
+            <span className="text-secondary font-medium">cloud infrastructure</span> using AWS.
+            I bridge the gap between development and operations to help teams ship faster with confidence.
+          </p>
+        </motion.div>
+
+        {/* Journey Timeline */}
+        <motion.div
+          className="mb-20"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        >
+          <h3 className="text-xl font-semibold text-text-primary text-center mb-8">
+            My Journey
+          </h3>
+          <div className="flex flex-col md:flex-row items-start justify-center gap-8 md:gap-0">
+            {journeySteps.map((step, index) => (
+              <div key={step.title} className="flex items-center">
+                <motion.div
+                  className="flex flex-col items-center text-center w-40 md:w-44"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: index * 0.15 }}
+                >
+                  <div className={`w-16 h-16 rounded-full ${step.bgColor} border-2 border-border flex items-center justify-center mb-4 hover:border-primary transition-colors`}>
+                    <step.icon size={28} className={step.color} />
+                  </div>
+                  <h4 className="text-text-primary font-semibold text-sm md:text-base mb-2">
+                    {step.title}
+                  </h4>
+                  <p className="text-text-secondary text-xs md:text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </motion.div>
+                {/* Arrow between steps */}
+                {index < journeySteps.length - 1 && (
+                  <div className="hidden md:flex items-center justify-center w-12 text-text-secondary/40">
+                    <ArrowRight size={24} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* What I Deliver Cards */}
+        <div>
+          <h3 className="text-xl font-semibold text-text-primary text-center mb-8">
+            What I Deliver
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {valueCards.map((card, index) => (
+              <motion.div
+                key={card.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+              >
+                <Card className="h-full text-center group hover:border-primary/50 transition-all">
+                  <div className={`w-14 h-14 rounded-xl ${card.bgColor} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
+                    <card.icon size={28} className={card.color} />
+                  </div>
+                  <h4 className="text-text-primary font-semibold mb-2">
+                    {card.title}
+                  </h4>
+                  <p className="text-text-secondary text-sm">
+                    {card.description}
+                  </p>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </div>
+
+        {/* Optional: Stats Row - Uncomment and customize if you want to add metrics */}
+        {/* 
+        <motion.div
+          className="mt-16 grid grid-cols-3 gap-6 max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center">
+              <div className="text-3xl md:text-4xl font-bold text-primary mb-1">
+                {stat.value}
+              </div>
+              <div className="text-text-secondary text-sm">
+                {stat.label}
+              </div>
+            </div>
+          ))}
+        </motion.div>
+        */}
       </div>
     </section>
   );
