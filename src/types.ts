@@ -17,12 +17,19 @@ export interface Tool {
   icon: string;
 }
 
+export type ProjectStatus = 'completed' | 'in-progress' | 'planned';
+
 export interface Project {
   title: string;
   description: string;
+  status: ProjectStatus;
+  problem?: string;
+  solution?: string;
+  outcome?: string;
   techStack: string[];
   githubUrl?: string;
   liveUrl?: string;
+  architectureDiagram?: string;
 }
 
 export interface Experience {
