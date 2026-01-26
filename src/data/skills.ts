@@ -1,56 +1,69 @@
-import type { SkillCategory } from '../types';
+import { Flame, Zap, BookOpen, type LucideIcon } from 'lucide-react';
 
-export const skillCategories: SkillCategory[] = [
+// Skill tier interface for tiered layout
+export interface SkillTier {
+    title: string;
+    subtitle: string;
+    icon: LucideIcon;
+    color: string;
+    bgColor: string;
+    borderColor: string;
+    skills: { name: string }[];
+}
+
+export const skillTiers: SkillTier[] = [
     {
-        title: 'Cloud & Infrastructure',
-        icon: 'Cloud',
+        title: 'Core Skills',
+        subtitle: 'Daily use in production',
+        icon: Flame,
+        color: 'text-orange-400',
+        bgColor: 'bg-orange-400/10',
+        borderColor: 'border-orange-400/30',
         skills: [
             { name: 'AWS' },
-            { name: 'EC2' },
-            { name: 'S3' },
-            { name: 'VPC' },
-            { name: 'IAM' },
-            { name: 'ECS' },
-            { name: 'ECR' },
-        ],
-    },
-    {
-        title: 'CI/CD & Automation',
-        icon: 'GitBranch',
-        skills: [
-            { name: 'GitHub Actions' },
-            { name: 'Jenkins' },
-            { name: 'Shell Scripting' },
-        ],
-    },
-    {
-        title: 'Containers & Orchestration',
-        icon: 'Container',
-        skills: [
             { name: 'Docker' },
-            { name: 'Docker Compose' },
-            // { name: 'Kubernetes' },
-            // { name: 'Helm' },
-        ],
-    },
-    {
-        title: 'Monitoring & Observability',
-        icon: 'Activity',
-        skills: [
+            { name: 'Jenkins' },
+            { name: 'GitHub Actions' },
+            { name: 'EC2 / S3 / IAM' },
+            { name: 'Shell Scripting' },
             { name: 'Prometheus' },
             { name: 'Grafana' },
-            { name: 'Loki' },
+            { name: 'Docker Compose' },
+            { name: 'ECS / ECR' },
         ],
     },
     {
-        title: 'Programming & Scripting',
-        icon: 'Code',
+        title: 'Proficient',
+        subtitle: 'Strong working knowledge',
+        icon: Zap,
+        color: 'text-primary',
+        bgColor: 'bg-primary/10',
+        borderColor: 'border-primary/30',
         skills: [
             { name: 'Python' },
-            { name: 'Bash' },
-            { name: 'JavaScript' },
-            { name: 'TypeScript' },
-            { name: 'YAML' },
+            { name: 'Typescript' },
+            { name: 'MongoDB' },
+            { name: 'MYSQL' },
+            { name: 'Express' },
+            { name: 'Node.js' },
+            { name: 'React' },
+            { name: 'Next.js' },
+            { name: 'Tailwind CSS' },
+            { name: 'Tailwind CSS' },
+        ],
+    },
+    {
+        title: 'Learning',
+        subtitle: 'Currently exploring',
+        icon: BookOpen,
+        color: 'text-secondary',
+        bgColor: 'bg-secondary/10',
+        borderColor: 'border-secondary/30',
+        skills: [
+            { name: 'Kubernetes' },
+            { name: 'Terraform' },
+            { name: 'Ansible' },
+            { name: 'ArgoCD' },
         ],
     },
 ];
