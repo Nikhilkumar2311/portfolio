@@ -32,12 +32,22 @@ export interface Project {
   architectureDiagram?: string;
 }
 
+export type EmploymentType = 'full-time' | 'internship' | 'contract' | 'freelance';
+
 export interface Experience {
   title: string;
   company: string;
+  companyInitial?: string; // For logo placeholder
+  logo?: string; // URL or path to company logo
   period: string;
+  duration?: string; // e.g., "1 year", "6 months"
+  employmentType: EmploymentType;
   description: string;
-  highlights: string[];
+  highlights: {
+    category: string;
+    items: string[];
+  }[];
+  techStack: string[];
 }
 
 export interface Certification {
