@@ -49,7 +49,6 @@ export const skillTiers: SkillTier[] = [
             { name: 'React' },
             { name: 'Next.js' },
             { name: 'Tailwind CSS' },
-            { name: 'Tailwind CSS' },
         ],
     },
     {

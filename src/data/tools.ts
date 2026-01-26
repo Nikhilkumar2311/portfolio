@@ -1,54 +1,46 @@
-import type { Tool } from "../types";
+import { Cloud, GitBranch, Box, Activity, type LucideIcon } from 'lucide-react';
 
-export const tools: Tool[] = [
+// DevOps stack category interface
+export interface DevOpsCategory {
+  category: string;
+  icon: LucideIcon;
+  color: string;
+  bgColor: string;
+  borderColor: string;
+  tools: string[];
+}
+
+export const devOpsStack: DevOpsCategory[] = [
   {
-    name: "AWS",
-    description:
-      "Cloud platform for hosting, storage, and infrastructure services.",
-    icon: "Cloud",
+    category: 'Cloud & Hosting',
+    icon: Cloud,
+    color: 'text-secondary',
+    bgColor: 'bg-secondary/10',
+    borderColor: 'border-secondary/30',
+    tools: ['AWS', 'EC2', 'S3', 'ECS', 'ECR', 'IAM', 'VPC'],
   },
   {
-    name: "Docker",
-    description:
-      "Containerization platform for building and deploying applications.",
-    icon: "Container",
+    category: 'CI/CD',
+    icon: GitBranch,
+    color: 'text-primary',
+    bgColor: 'bg-primary/10',
+    borderColor: 'border-primary/30',
+    tools: ['Jenkins', 'GitHub Actions', 'Shell Scripts'],
   },
   {
-    name: "GitHub Actions",
-    description:
-      "CI/CD automation directly integrated with GitHub repositories.",
-    icon: "GitBranch",
+    category: 'Containers',
+    icon: Box,
+    color: 'text-green-400',
+    bgColor: 'bg-green-400/10',
+    borderColor: 'border-green-400/30',
+    tools: ['Docker', 'Docker Compose'],
   },
   {
-    name: "Jenkins",
-    description: "Open-source automation server for building CI/CD pipelines.",
-    icon: "Settings",
-  },
-  // {
-  //     name: 'Kubernetes',
-  //     description: 'Container orchestration platform for managing deployments at scale.',
-  //     icon: 'Layers',
-  // },
-  // {
-  //     name: 'Terraform',
-  //     description: 'Infrastructure as Code tool for provisioning cloud resources.',
-  //     icon: 'FileCode',
-  // },
-  {
-    name: "Prometheus",
-    description: "Monitoring and alerting toolkit for metrics collection.",
-    icon: "Activity",
-  },
-  {
-    name: "Grafana",
-    description:
-      "Visualization platform for monitoring dashboards and analytics.",
-    icon: "BarChart3",
-  },
-  {
-    name: "Loki",
-    description:
-      "Log aggregation system for storing, querying, and analyzing application logs.",
-    icon: "File",
+    category: 'Monitoring',
+    icon: Activity,
+    color: 'text-amber-400',
+    bgColor: 'bg-amber-400/10',
+    borderColor: 'border-amber-400/30',
+    tools: ['Prometheus', 'Grafana', 'Loki'],
   },
 ];
