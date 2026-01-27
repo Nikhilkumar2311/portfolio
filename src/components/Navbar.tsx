@@ -1,9 +1,16 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import type { NavLink } from "../types";
 
-const navLinks: NavLink[] = [
+interface NavItem {
+  label: string;
+  href: string;
+  isRoute?: boolean;
+}
+
+const navLinks: NavItem[] = [
+  { label: "Blog", href: "/blog", isRoute: true },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Tools", href: "#tools" },
@@ -15,6 +22,8 @@ const navLinks: NavLink[] = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,6 +32,18 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Handle navigation for hash links when not on home page
+  const handleNavClick = (href: string, isRoute?: boolean) => {
+    setIsMobileMenuOpen(false);
+
+    if (isRoute) return; // Let React Router handle route links
+
+    if (!isHomePage && href.startsWith("#")) {
+      // Navigate to home page with hash
+      window.location.href = "/" + href;
+    }
+  };
 
   return (
     <motion.header
@@ -38,21 +59,37 @@ export function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img src="/logo.png" alt="NK" className="h-12 w-auto" />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-text-secondary hover:text-primary transition-colors text-base font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
+            {navLinks.map((link) =>
+              link.isRoute ? (
+                <NavLink
+                  key={link.href}
+                  to={link.href}
+                  className={({ isActive }) =>
+                    `text-base font-medium transition-colors ${isActive
+                      ? "text-primary"
+                      : "text-text-secondary hover:text-primary"
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ) : (
+                <Link
+                  key={link.href}
+                  to={isHomePage ? link.href : "/" + link.href}
+                  onClick={() => handleNavClick(link.href, link.isRoute)}
+                  className="text-text-secondary hover:text-primary transition-colors text-base font-medium"
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -75,16 +112,32 @@ export function Navbar() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
             >
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block py-3 text-text-secondary hover:text-primary transition-colors"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
+              {navLinks.map((link) =>
+                link.isRoute ? (
+                  <NavLink
+                    key={link.href}
+                    to={link.href}
+                    className={({ isActive }) =>
+                      `block py-3 transition-colors ${isActive
+                        ? "text-primary"
+                        : "text-text-secondary hover:text-primary"
+                      }`
+                    }
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {link.label}
+                  </NavLink>
+                ) : (
+                  <a
+                    key={link.href}
+                    href={isHomePage ? link.href : "/" + link.href}
+                    className="block py-3 text-text-secondary hover:text-primary transition-colors"
+                    onClick={() => handleNavClick(link.href, link.isRoute)}
+                  >
+                    {link.label}
+                  </a>
+                )
+              )}
             </motion.div>
           )}
         </AnimatePresence>

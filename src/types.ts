@@ -67,3 +67,15 @@ export interface SocialLink {
   url: string;
   icon: string;
 }
+
+export interface BlogPost {
+  slug: string;           // SEO-friendly URL slug
+  title: string;
+  excerpt: string;        // Short preview for cards
+  content: string;        // Markdown content
+  coverImage?: string;
+  tags: string[];
+  publishedAt: string;    // ISO date string
+  updatedAt?: string;
+  readingTime: number;    // Estimated minutes to read
+}
