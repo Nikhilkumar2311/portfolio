@@ -9,7 +9,7 @@ tags:
   - Docker
   - Hostinger VPS
   - GitHub Actions
-publishedAt: 2026-01-15
+publishedAt: 2026-01-27
 ---
 
 ## How I Became the DevOps Engineer in My Company

@@ -10,7 +10,7 @@ interface NavItem {
 }
 
 const navLinks: NavItem[] = [
-  { label: "Blog", href: "/blog", isRoute: true },
+  { label: "Blogs", href: "/blog", isRoute: true },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Tools", href: "#tools" },
