@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { SectionTitle } from "./ui/SectionTitle";
 import { Card } from "./ui/Card";
-import { Rocket, Cloud, BarChart3, GitBranch, ArrowRight, Laptop, Search, type LucideIcon } from "lucide-react";
+import { Rocket, Cloud, BarChart3, GitBranch, Laptop, Search, type LucideIcon } from "lucide-react";
 
 // Journey milestones for the timeline
 const journeySteps: { title: string; description: string; icon: LucideIcon; color: string; bgColor: string }[] = [
@@ -102,33 +102,26 @@ export function About() {
           <h3 className="text-xl font-semibold text-text-primary text-center mb-8">
             My Journey
           </h3>
-          <div className="flex flex-col md:flex-row items-start justify-center gap-8 md:gap-0">
+          <div className="grid grid-cols-2 md:grid-cols-3 justify-items-center gap-6 md:gap-8">
             {journeySteps.map((step, index) => (
-              <div key={step.title} className="flex items-center">
-                <motion.div
-                  className="flex flex-col items-center text-center w-40 md:w-44"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.4, delay: index * 0.15 }}
-                >
-                  <div className={`w-16 h-16 rounded-full ${step.bgColor} border-2 border-border flex items-center justify-center mb-4 hover:border-primary transition-colors`}>
-                    <step.icon size={28} className={step.color} />
-                  </div>
-                  <h4 className="text-text-primary font-semibold text-sm md:text-base mb-2">
-                    {step.title}
-                  </h4>
-                  <p className="text-text-secondary text-xs md:text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </motion.div>
-                {/* Arrow between steps */}
-                {index < journeySteps.length - 1 && (
-                  <div className="hidden md:flex items-center justify-center w-12 text-text-secondary/40">
-                    <ArrowRight size={24} />
-                  </div>
-                )}
-              </div>
+              <motion.div
+                key={step.title}
+                className={`flex flex-col items-center text-center ${index === journeySteps.length - 1 ? 'col-span-2 md:col-span-1' : ''}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.15 }}
+              >
+                <div className={`w-16 h-16 rounded-full ${step.bgColor} border-2 border-border flex items-center justify-center mb-4 hover:border-primary transition-colors`}>
+                  <step.icon size={28} className={step.color} />
+                </div>
+                <h4 className="text-text-primary font-semibold text-sm md:text-base mb-2">
+                  {step.title}
+                </h4>
+                <p className="text-text-secondary text-xs md:text-sm leading-relaxed max-w-[160px]">
+                  {step.description}
+                </p>
+              </motion.div>
             ))}
           </div>
         </motion.div>
@@ -138,7 +131,7 @@ export function About() {
           <h3 className="text-xl font-semibold text-text-primary text-center mb-8">
             What I Deliver
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
             {valueCards.map((card, index) => (
               <motion.div
                 key={card.title}
