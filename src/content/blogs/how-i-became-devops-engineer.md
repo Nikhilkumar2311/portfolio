@@ -14,7 +14,7 @@ publishedAt: 2026-01-27
 
 ## How I Became the DevOps Engineer in My Company
 
-I joined my company as a full-stack developer, but over time I found myself handling something very different — DevOps and cloud infrastructure.
+I joined my company as a full-stack developer, but over time I found myself handling something very different - DevOps and cloud infrastructure.
 
 This blog explains how that happened, what I learned, and what I’m still improving.
 
@@ -53,10 +53,10 @@ I started with **GitHub Actions** because our code was already hosted on GitHub.
 
 #### Tools I began with:
 
-- **Docker** – to containerize applications
-- **GitHub Actions** – for CI/CD automation
-- **Hostinger VPS** – for hosting
-- **GitHub** – for version control and triggers
+- **Docker** - to containerize applications
+- **GitHub Actions** - for CI/CD automation
+- **Hostinger VPS** - for hosting
+- **GitHub** - for version control and triggers
 
 I created GitHub Actions workflows that automatically built Docker images and deployed them to production after every successful commit.
 
@@ -145,4 +145,4 @@ This journey is still ongoing, but it has already helped me grow significantly a
 
 ---
 
-_If you’re a developer in a similar situation, don’t wait for a title — start solving problems. That’s how DevOps begins._
+_If you’re a developer in a similar situation, don’t wait for a title - start solving problems. That’s how DevOps begins._
