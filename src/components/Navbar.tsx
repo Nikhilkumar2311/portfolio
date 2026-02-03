@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ui/ThemeToggle";
+import { useTheme } from "../context/ThemeContext";
 
 interface NavItem {
   label: string;
@@ -25,6 +26,7 @@ export function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,7 +63,11 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center">
-            <img src="/logo.png" alt="NK" className="h-12 w-auto" />
+            <img
+              src={theme === 'light' ? "/logoD.png" : "/logo.png"}
+              alt="NK"
+              className="h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}
