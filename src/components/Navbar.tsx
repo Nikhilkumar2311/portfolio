@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "./ui/ThemeToggle";
 
 interface NavItem {
   label: string;
@@ -90,16 +91,20 @@ export function Navbar() {
                 </Link>
               )
             )}
+            <ThemeToggle />
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-text-primary p-2"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Mobile Menu Button - shows on mobile only */}
+          <div className="flex items-center gap-4 md:hidden">
+            <ThemeToggle />
+            <button
+              className="text-text-primary p-2"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Navigation */}
@@ -112,32 +117,34 @@ export function Navbar() {
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
             >
-              {navLinks.map((link) =>
-                link.isRoute ? (
-                  <NavLink
-                    key={link.href}
-                    to={link.href}
-                    className={({ isActive }) =>
-                      `block py-3 transition-colors ${isActive
-                        ? "text-primary"
-                        : "text-text-secondary hover:text-primary"
-                      }`
-                    }
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {link.label}
-                  </NavLink>
-                ) : (
-                  <a
-                    key={link.href}
-                    href={isHomePage ? link.href : "/" + link.href}
-                    className="block py-3 text-text-secondary hover:text-primary transition-colors"
-                    onClick={() => handleNavClick(link.href, link.isRoute)}
-                  >
-                    {link.label}
-                  </a>
-                )
-              )}
+              <div className="flex flex-col space-y-2">
+                {navLinks.map((link) =>
+                  link.isRoute ? (
+                    <NavLink
+                      key={link.href}
+                      to={link.href}
+                      className={({ isActive }) =>
+                        `block py-3 transition-colors ${isActive
+                          ? "text-primary"
+                          : "text-text-secondary hover:text-primary"
+                        }`
+                      }
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      {link.label}
+                    </NavLink>
+                  ) : (
+                    <a
+                      key={link.href}
+                      href={isHomePage ? link.href : "/" + link.href}
+                      className="block py-3 text-text-secondary hover:text-primary transition-colors"
+                      onClick={() => handleNavClick(link.href, link.isRoute)}
+                    >
+                      {link.label}
+                    </a>
+                  )
+                )}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

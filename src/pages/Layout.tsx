@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
-import { ParticleNetwork } from '../components/ParticleNetwork';
 
 export function Layout() {
     const location = useLocation();
@@ -16,7 +15,6 @@ export function Layout() {
 
     return (
         <>
-            <ParticleNetwork />
             <Navbar />
             <main className="relative">
                 {/* Global background gradient */}

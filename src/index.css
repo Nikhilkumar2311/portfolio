@@ -3,7 +3,7 @@
 /* Custom Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
-/* CSS Variables for Theme */
+/* CSS Variables for Theme - Dark Mode (Default) */
 :root {
     --color-background: #0B0F19;
     --color-surface: #111827;
@@ -12,6 +12,21 @@
     --color-text-primary: #E5E7EB;
     --color-text-secondary: #9CA3AF;
     --color-border: #1F2933;
+    --color-card-bg: #111827;
+    --color-hover-bg: rgba(99, 102, 241, 0.1);
+}
+
+/* Light Mode Variables */
+:root.light {
+    --color-background: #FFFFFF;
+    --color-surface: #F8FAFC;
+    --color-primary: #6366F1;
+    --color-secondary: #0EA5E9;
+    --color-text-primary: #1F2937;
+    --color-text-secondary: #6B7280;
+    --color-border: #E5E7EB;
+    --color-card-bg: #FFFFFF;
+    --color-hover-bg: rgba(99, 102, 241, 0.08);
 }
 
 html {
@@ -25,20 +40,21 @@ body {
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Custom Tailwind Theme Extension */
 @theme {
-    /* Colors */
-    --color-background: #0B0F19;
-    --color-surface: #111827;
+    /* Colors - These use CSS variables for dynamic theming */
+    --color-background: var(--color-background);
+    --color-surface: var(--color-surface);
     --color-primary: #6366F1;
     --color-primary-hover: #4F46E5;
     --color-secondary: #22D3EE;
     --color-secondary-hover: #06B6D4;
-    --color-text-primary: #E5E7EB;
-    --color-text-secondary: #9CA3AF;
-    --color-border: #1F2933;
+    --color-text-primary: var(--color-text-primary);
+    --color-text-secondary: var(--color-text-secondary);
+    --color-border: var(--color-border);
 
     /* Fonts */
     --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
