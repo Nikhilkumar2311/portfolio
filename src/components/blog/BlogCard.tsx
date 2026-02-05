@@ -27,20 +27,19 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
                         <img
                             src={post.coverImage}
                             alt={post.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            className="w-full h-full object-cover"
                             onError={(e) => {
                                 // Hide image on error
                                 (e.target as HTMLImageElement).style.display = 'none';
                             }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-surface/80 to-transparent" />
                     </div>
                 )}
 
                 {/* Content */}
                 <div className="p-6">
                     {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-3">
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
                         {post.tags.slice(0, 3).map((tag) => (
                             <span
                                 key={tag}
@@ -50,7 +49,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
                             </span>
                         ))}
                         {post.tags.length > 3 && (
-                            <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-border text-text-secondary">
+                            <span className="px-2.5 py-1 text-xs items-center font-medium rounded-full bg-border text-text-secondary">
                                 +{post.tags.length - 3}
                             </span>
                         )}
