@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Custom Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+/* Custom Fonts - Space Grotesk for headings, Inter for body */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
 
 /* CSS Variables for Theme - Dark Mode (Default) */
 :root {
@@ -14,6 +14,8 @@
     --color-border: #1F2933;
     --color-card-bg: #111827;
     --color-hover-bg: rgba(99, 102, 241, 0.1);
+    --font-heading: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
 }
 
 /* Light Mode Variables */
@@ -34,13 +36,24 @@ html {
 }
 
 body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-family: var(--font-body);
     background-color: var(--color-background);
     color: var(--color-text-primary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Heading Font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
 }
 
 /* Lenis Smooth Scroll Styles */

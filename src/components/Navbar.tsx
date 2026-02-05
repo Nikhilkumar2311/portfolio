@@ -72,7 +72,7 @@ export function Navbar() {
             <img
               src={theme === 'light' ? "/logoD.png" : "/logo.png"}
               alt="NK"
-              className="h-12 w-auto"
+              className="h-8 w-auto"
             />
           </Link>
 
