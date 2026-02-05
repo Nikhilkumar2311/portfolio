@@ -149,6 +149,8 @@ export function Hero() {
                     src="/profile.jpg"
                     alt="Nikhil Kumar - DevOps Cloud Engineer"
                     className="w-full h-full object-cover"
+                    loading="eager"
+                    fetchPriority="high"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
                 </div>

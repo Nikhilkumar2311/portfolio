@@ -28,6 +28,8 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
                             src={post.coverImage}
                             alt={post.title}
                             className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
                             onError={(e) => {
                                 // Hide image on error
                                 (e.target as HTMLImageElement).style.display = 'none';

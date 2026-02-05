@@ -13,13 +13,13 @@ interface NavItem {
 }
 
 const navLinks: NavItem[] = [
-  { label: "Blogs", href: "/blog", isRoute: true },
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
   { label: "Tools", href: "#tools" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
+  { label: "Blogs", href: "/blog", isRoute: true },
 ];
 
 export function Navbar() {
