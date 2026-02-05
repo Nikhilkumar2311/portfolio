@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
 import { SectionTitle } from "./ui/SectionTitle";
 import { SpotlightCard } from "./ui/AceternityEffects";
-import { Rocket, Cloud, BarChart3, GitBranch, Laptop, Search, type LucideIcon } from "lucide-react";
+import { Counter } from "./ui/ProfessionalEffects";
+import { useGitHubStats } from "../hooks/useGitHubStats";
+import { Rocket, Cloud, BarChart3, GitBranch, Laptop, Search, Github, FolderGit2, type LucideIcon } from "lucide-react";
 
 // Journey milestones for the timeline
 const journeySteps: { title: string; description: string; icon: LucideIcon; color: string; bgColor: string }[] = [
@@ -60,14 +62,37 @@ const valueCards = [
   },
 ];
 
-// Optional: Stats to showcase (uncomment and fill in if you want to use)
-// const stats = [
-//   { value: "10+", label: "Pipelines Configured" },
-//   { value: "7", label: "AWS Services Used" },
-//   { value: "50+", label: "Deployments Automated" },
-// ];
-
 export function About() {
+  // Fetch real GitHub stats
+  const githubStats = useGitHubStats('Nikhilkumar2311');
+
+  // Stats to display
+  const stats = [
+    {
+      value: githubStats.loading ? 0 : githubStats.publicRepos,
+      label: "GitHub Repos",
+      icon: Github,
+      suffix: "+"
+    },
+    {
+      value: 5,
+      label: "Projects Built",
+      icon: FolderGit2,
+      suffix: "+"
+    },
+    {
+      value: 7,
+      label: "AWS Services",
+      icon: Cloud,
+      suffix: ""
+    },
+    {
+      value: 50,
+      label: "Deployments",
+      icon: Rocket,
+      suffix: "+"
+    },
+  ];
   return (
     <section id="about" className="py-20 md:py-32">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -89,6 +114,32 @@ export function About() {
             <span className="text-secondary font-medium">cloud infrastructure</span> using AWS.
             I bridge the gap between development and operations to help teams ship faster with confidence.
           </p>
+        </motion.div>
+
+        {/* Stats Grid */}
+        <motion.div
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={stat.label}
+              className="text-center p-4 rounded-xl bg-surface/50 border border-border hover:border-primary/30 transition-colors"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+            >
+              <stat.icon className="w-6 h-6 mx-auto mb-2 text-primary" />
+              <div className="text-2xl md:text-3xl font-bold text-text-primary">
+                <Counter end={stat.value} duration={2} suffix={stat.suffix} />
+              </div>
+              <p className="text-text-secondary text-sm mt-1">{stat.label}</p>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Journey Timeline */}

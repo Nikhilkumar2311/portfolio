@@ -2,6 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Download, FolderGit2 } from "lucide-react";
 import { Button } from "./ui/Button";
 import { TextReveal } from "./ui/AceternityEffects";
+import { Typewriter, DotGrid } from "./ui/ProfessionalEffects";
 import { useRef } from "react";
 
 export function Hero() {
@@ -21,6 +22,9 @@ export function Hero() {
       ref={containerRef}
       className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16"
     >
+      {/* Subtle dot grid background */}
+      <DotGrid className="opacity-20" />
+
       {/* Parallax Background Elements */}
       <motion.div
         className="absolute inset-0 pointer-events-none"
@@ -70,15 +74,21 @@ export function Hero() {
               <TextReveal text="Nikhil Kumar" delay={0.2} />
             </h1>
 
-            {/* Role with gradient */}
-            <motion.p
-              className="text-xl sm:text-2xl font-medium mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+            {/* Role with typewriter effect */}
+            <motion.div
+              className="text-xl sm:text-2xl font-medium mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8, duration: 0.6 }}
             >
-              DevOps Cloud Engineer
-            </motion.p>
+              <Typewriter
+                words={["DevOps Cloud Engineer", "CI/CD", "Cloud Architect", "AWS", "Full Stack Developer"]}
+                className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+                typingSpeed={80}
+                deletingSpeed={40}
+                delayBetweenWords={3000}
+              />
+            </motion.div>
 
             {/* Description */}
             <motion.div
@@ -168,9 +178,9 @@ export function Hero() {
             </div>
           </motion.div>
         </div>
-      </motion.div>
+      </motion.div >
 
-    </section>
+    </section >
   );
 }
 
