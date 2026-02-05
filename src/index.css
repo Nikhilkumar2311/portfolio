@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* Custom Fonts - Space Grotesk for headings, Inter for body */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
-
 /* CSS Variables for Theme - Dark Mode (Default) */
 :root {
     --color-background: #0B0F19;

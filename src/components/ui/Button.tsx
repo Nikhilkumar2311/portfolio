@@ -27,12 +27,12 @@ export function Button({
 
   const variants = {
     primary: `
-      bg-primary text-white font-semibold
+      bg-primary !text-[#FFFFFF] font-semibold
       hover:bg-primary-hover hover:scale-105
       shadow-lg shadow-primary/25
     `,
     secondary: `
-      bg-secondary text-background
+      bg-secondary !text-[#000000] font-semibold
       hover:bg-secondary-hover hover:scale-105
       shadow-lg shadow-secondary/25
     `,
