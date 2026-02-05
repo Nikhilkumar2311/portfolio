@@ -5,11 +5,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-8F6WDNS4HE"></script>
+  <!-- Preconnect for critical resources -->
+  <link rel="preconnect" href="https://api.github.com" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- Preload hero image for faster LCP -->
+  <link rel="preload" as="image" href="/profile.webp" type="image/webp" fetchpriority="high" />
+
+  <!-- Google Analytics - Deferred for performance -->
+  <script async defer src="https://www.googletagmanager.com/gtag/js?id=G-8F6WDNS4HE"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-8F6WDNS4HE');
   </script>
@@ -44,16 +52,12 @@
   <link rel="icon" type="image/svg+xml" href="/slogo.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-  <!-- Preconnect for Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  
   <!-- Preload critical fonts for faster text rendering -->
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'" />
-  
-  <!-- DNS prefetch for external resources -->
-  <link rel="dns-prefetch" href="https://api.github.com" />
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap"
+    media="print" onload="this.media='all'" />
 
   <!-- Theme Color -->
   <meta name="theme-color" content="#0B0F19" />

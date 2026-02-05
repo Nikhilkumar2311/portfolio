@@ -146,7 +146,7 @@ export function Hero() {
                 {/* Inner container with image */}
                 <div className="relative w-full h-full rounded-2xl bg-surface overflow-hidden">
                   <img
-                    src="/profile.jpg"
+                    src="/profile.webp"
                     alt="Nikhil Kumar - DevOps Cloud Engineer"
                     className="w-full h-full object-cover"
                     loading="eager"

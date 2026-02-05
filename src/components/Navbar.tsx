@@ -70,7 +70,7 @@ export function Navbar() {
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
-              src={theme === 'light' ? "/logoD.png" : "/logo.png"}
+              src={theme === 'light' ? "/logoD.webp" : "/logo.webp"}
               alt="NK"
               className="h-8 w-auto"
             />
