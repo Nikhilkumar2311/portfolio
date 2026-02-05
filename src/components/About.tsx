@@ -2,8 +2,7 @@ import { motion } from "framer-motion";
 import { SectionTitle } from "./ui/SectionTitle";
 import { SpotlightCard } from "./ui/AceternityEffects";
 import { Counter } from "./ui/ProfessionalEffects";
-import { useGitHubStats } from "../hooks/useGitHubStats";
-import { Rocket, Cloud, BarChart3, GitBranch, Laptop, Search, Github, FolderGit2, type LucideIcon } from "lucide-react";
+import { Rocket, Cloud, BarChart3, GitBranch, Laptop, Search, FolderGit2, type LucideIcon } from "lucide-react";
 
 // Journey milestones for the timeline
 const journeySteps: { title: string; description: string; icon: LucideIcon; color: string; bgColor: string }[] = [
@@ -63,17 +62,8 @@ const valueCards = [
 ];
 
 export function About() {
-  // Fetch real GitHub stats
-  const githubStats = useGitHubStats('Nikhilkumar2311');
-
   // Stats to display
   const stats = [
-    {
-      value: githubStats.loading ? 0 : githubStats.publicRepos,
-      label: "GitHub Repos",
-      icon: Github,
-      suffix: "+"
-    },
     {
       value: 10,
       label: "Projects Built",
