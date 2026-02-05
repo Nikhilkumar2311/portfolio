@@ -2,16 +2,18 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { Navbar } from '../components/Navbar';
 import { Footer } from '../components/Footer';
+import { SmoothScrollProvider, useSmoothScroll } from '../components/providers/SmoothScrollProvider';
 
-export function Layout() {
+function LayoutContent() {
     const location = useLocation();
+    const { scrollTo } = useSmoothScroll();
 
     // Scroll to top on route change (for non-hash routes)
     useEffect(() => {
         if (!location.hash) {
-            window.scrollTo({ top: 0, behavior: 'instant' });
+            scrollTo(0, { duration: 0 });
         }
-    }, [location.pathname]);
+    }, [location.pathname, scrollTo]);
 
     return (
         <>
@@ -25,5 +27,13 @@ export function Layout() {
             </main>
             <Footer />
         </>
+    );
+}
+
+export function Layout() {
+    return (
+        <SmoothScrollProvider>
+            <LayoutContent />
+        </SmoothScrollProvider>
     );
 }

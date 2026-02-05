@@ -6,11 +6,19 @@ function SkillBadge({ name, delay }: { name: string; delay: number }) {
     return (
         <motion.span
             className="px-4 py-2 rounded-full bg-surface border border-border text-text-primary text-sm font-medium hover:border-primary/50 hover:bg-primary/5 transition-all cursor-default"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.8, y: 10 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.3, delay }}
-            whileHover={{ scale: 1.05 }}
+            transition={{
+                duration: 0.4,
+                delay,
+                ease: [0.25, 0.4, 0.25, 1]
+            }}
+            whileHover={{
+                scale: 1.08,
+                y: -2,
+                boxShadow: "0 4px 12px rgba(99, 102, 241, 0.15)"
+            }}
         >
             {name}
         </motion.span>
@@ -22,17 +30,36 @@ function TierCard({ tier, index }: { tier: SkillTier; index: number }) {
 
     return (
         <motion.div
-            className={`relative p-6 rounded-2xl border ${tier.borderColor} ${tier.bgColor} backdrop-blur-sm`}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            className={`relative p-6 rounded-2xl border ${tier.borderColor} ${tier.bgColor} backdrop-blur-sm overflow-hidden`}
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.15 }}
+            transition={{
+                duration: 0.6,
+                delay: index * 0.15,
+                ease: [0.25, 0.4, 0.25, 1]
+            }}
+            whileHover={{
+                y: -4,
+                transition: { duration: 0.2 }
+            }}
         >
+            {/* Subtle gradient overlay on hover */}
+            <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0"
+                whileHover={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+            />
+
             {/* Tier Header */}
-            <div className="flex items-center gap-3 mb-4">
-                <div className={`p-2.5 rounded-xl ${tier.bgColor}`}>
+            <div className="relative flex items-center gap-3 mb-4">
+                <motion.div
+                    className={`p-2.5 rounded-xl ${tier.bgColor}`}
+                    whileHover={{ rotate: 5, scale: 1.1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                >
                     <Icon size={24} className={tier.color} />
-                </div>
+                </motion.div>
                 <div>
                     <h3 className={`text-lg font-bold ${tier.color}`}>
                         {tier.title}
@@ -44,7 +71,7 @@ function TierCard({ tier, index }: { tier: SkillTier; index: number }) {
             </div>
 
             {/* Skills */}
-            <div className="flex flex-wrap gap-2">
+            <div className="relative flex flex-wrap gap-2">
                 {tier.skills.map((skill, i) => (
                     <SkillBadge
                         key={skill.name}

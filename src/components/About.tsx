@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { SectionTitle } from "./ui/SectionTitle";
-import { Card } from "./ui/Card";
+import { SpotlightCard } from "./ui/AceternityEffects";
 import { Rocket, Cloud, BarChart3, GitBranch, Laptop, Search, type LucideIcon } from "lucide-react";
 
 // Journey milestones for the timeline
@@ -135,22 +135,30 @@ export function About() {
             {valueCards.map((card, index) => (
               <motion.div
                 key={card.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.1 }}
+                transition={{
+                  duration: 0.5,
+                  delay: index * 0.1,
+                  ease: [0.25, 0.4, 0.25, 1]
+                }}
               >
-                <Card className="h-full text-center group hover:border-primary/50 transition-all">
-                  <div className={`w-14 h-14 rounded-xl ${card.bgColor} flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform`}>
+                <SpotlightCard className="h-full text-center">
+                  <motion.div
+                    className={`w-14 h-14 rounded-xl ${card.bgColor} flex items-center justify-center mx-auto mb-4`}
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
                     <card.icon size={28} className={card.color} />
-                  </div>
+                  </motion.div>
                   <h4 className="text-text-primary font-semibold mb-2">
                     {card.title}
                   </h4>
                   <p className="text-text-secondary text-sm">
                     {card.description}
                   </p>
-                </Card>
+                </SpotlightCard>
               </motion.div>
             ))}
           </div>

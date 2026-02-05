@@ -40,8 +40,14 @@ export function Experience() {
                 <div className="max-w-4xl mx-auto">
                     {/* Experience Timeline */}
                     <div className="relative pl-8 md:pl-12">
-                        {/* Timeline Line */}
-                        <div className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5 bg-border/50" />
+                        {/* Timeline Line with animated gradient */}
+                        <motion.div
+                            className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-primary/30"
+                            initial={{ scaleY: 0, originY: 0 }}
+                            whileInView={{ scaleY: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1.5, ease: "easeOut" }}
+                        />
 
                         {experiences.map((exp, index) => {
                             const empType = employmentTypeConfig[exp.employmentType];
@@ -50,13 +56,33 @@ export function Experience() {
                                 <motion.div
                                     key={`${exp.company}-${exp.title}`}
                                     className="relative mb-12 last:mb-0"
-                                    initial={{ opacity: 0, x: -20 }}
+                                    initial={{ opacity: 0, x: -30 }}
                                     whileInView={{ opacity: 1, x: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                                    viewport={{ once: true, margin: "-50px" }}
+                                    transition={{
+                                        duration: 0.6,
+                                        delay: index * 0.15,
+                                        ease: [0.25, 0.4, 0.25, 1]
+                                    }}
                                 >
-                                    {/* Timeline Dot */}
-                                    <div className="absolute -left-8 md:-left-8 top-2 w-4 h-4 bg-primary rounded-full border-4 border-background z-10" />
+                                    {/* Timeline Dot with pulse effect */}
+                                    <motion.div
+                                        className="absolute -left-8 md:-left-8 top-2 w-4 h-4 bg-primary rounded-full border-4 border-background z-10"
+                                        initial={{ scale: 0 }}
+                                        whileInView={{ scale: 1 }}
+                                        viewport={{ once: true }}
+                                        transition={{
+                                            type: "spring",
+                                            stiffness: 300,
+                                            delay: index * 0.1
+                                        }}
+                                    >
+                                        <motion.div
+                                            className="absolute inset-0 rounded-full bg-primary"
+                                            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 0, 0.5] }}
+                                            transition={{ repeat: Infinity, duration: 2, delay: index * 0.2 }}
+                                        />
+                                    </motion.div>
 
                                     <Card className="relative overflow-hidden">
                                         {/* Status Badge */}

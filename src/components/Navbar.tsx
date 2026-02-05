@@ -4,6 +4,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ui/ThemeToggle";
 import { useTheme } from "../context/ThemeContext";
+import { useSmoothScroll } from "./providers/SmoothScrollProvider";
 
 interface NavItem {
   label: string;
@@ -27,6 +28,7 @@ export function Navbar() {
   const location = useLocation();
   const isHomePage = location.pathname === "/";
   const { theme } = useTheme();
+  const { scrollTo } = useSmoothScroll();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,14 +38,18 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Handle navigation for hash links when not on home page
-  const handleNavClick = (href: string, isRoute?: boolean) => {
+  // Handle navigation for hash links with smooth scroll
+  const handleNavClick = (e: React.MouseEvent, href: string, isRoute?: boolean) => {
     setIsMobileMenuOpen(false);
 
     if (isRoute) return; // Let React Router handle route links
 
-    if (!isHomePage && href.startsWith("#")) {
-      // Navigate to home page with hash
+    if (isHomePage && href.startsWith("#")) {
+      e.preventDefault();
+      // Use Lenis smooth scroll for same-page navigation
+      scrollTo(href, { offset: -80, duration: 1.2 });
+    } else if (!isHomePage && href.startsWith("#")) {
+      // Navigate to home page with hash (Lenis will handle after load)
       window.location.href = "/" + href;
     }
   };
@@ -90,7 +96,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   to={isHomePage ? link.href : "/" + link.href}
-                  onClick={() => handleNavClick(link.href, link.isRoute)}
+                  onClick={(e) => handleNavClick(e, link.href, link.isRoute)}
                   className="text-text-secondary hover:text-primary transition-colors text-base font-medium"
                 >
                   {link.label}
@@ -140,14 +146,14 @@ export function Navbar() {
                       {link.label}
                     </NavLink>
                   ) : (
-                    <a
+                    <Link
                       key={link.href}
-                      href={isHomePage ? link.href : "/" + link.href}
+                      to={isHomePage ? link.href : "/" + link.href}
                       className="block py-3 text-text-secondary hover:text-primary transition-colors"
-                      onClick={() => handleNavClick(link.href, link.isRoute)}
+                      onClick={(e) => handleNavClick(e, link.href, link.isRoute)}
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   )
                 )}
               </div>
