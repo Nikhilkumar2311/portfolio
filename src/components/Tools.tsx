@@ -20,7 +20,7 @@ export function Tools() {
                                 className={`p-6 rounded-2xl border ${group.borderColor} ${group.bgColor} backdrop-blur-sm`}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
+                                viewport={{ once: false }}
                                 transition={{ duration: 0.5, delay: index * 0.1 }}
                             >
                                 {/* Category Header */}
@@ -43,7 +43,7 @@ export function Tools() {
                                             className="px-3 py-1.5 rounded-full bg-surface border border-border text-text-primary text-sm font-medium hover:border-primary/50 transition-colors"
                                             initial={{ opacity: 0, scale: 0.9 }}
                                             whileInView={{ opacity: 1, scale: 1 }}
-                                            viewport={{ once: true }}
+                                            viewport={{ once: false }}
                                             transition={{ duration: 0.2, delay: 0.3 + i * 0.03 }}
                                         >
                                             {tool}

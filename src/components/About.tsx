@@ -75,7 +75,7 @@ export function About() {
       suffix: "+"
     },
     {
-      value: 5,
+      value: 10,
       label: "Projects Built",
       icon: FolderGit2,
       suffix: "+"
@@ -87,7 +87,7 @@ export function About() {
       suffix: ""
     },
     {
-      value: 50,
+      value: 5,
       label: "Deployments",
       icon: Rocket,
       suffix: "+"
@@ -106,7 +106,7 @@ export function About() {
           className="max-w-3xl mx-auto text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5 }}
         >
           <p className="text-lg text-text-secondary leading-relaxed">
@@ -121,7 +121,7 @@ export function About() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5, delay: 0.1 }}
         >
           {stats.map((stat, index) => (
@@ -130,7 +130,7 @@ export function About() {
               className="text-center p-4 rounded-xl bg-surface/50 border border-border hover:border-primary/30 transition-colors"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ delay: index * 0.1 }}
             >
               <stat.icon className="w-6 h-6 mx-auto mb-2 text-primary" />
@@ -147,7 +147,7 @@ export function About() {
           className="mb-20"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: false }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           <h3 className="text-xl font-semibold text-text-primary text-center mb-8">
@@ -160,7 +160,7 @@ export function About() {
                 className={`flex flex-col items-center text-center ${index === journeySteps.length - 1 ? 'col-span-2 md:col-span-1' : ''}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.4, delay: index * 0.15 }}
               >
                 <div className={`w-16 h-16 rounded-full ${step.bgColor} border-2 border-border flex items-center justify-center mb-4 hover:border-primary transition-colors`}>
@@ -188,7 +188,7 @@ export function About() {
                 key={card.title}
                 initial={{ opacity: 0, y: 30, scale: 0.95 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{
                   duration: 0.5,
                   delay: index * 0.1,

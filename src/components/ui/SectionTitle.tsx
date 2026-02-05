@@ -12,7 +12,7 @@ export function SectionTitle({ title, subtitle, className = '' }: SectionTitlePr
             className={`text-center mb-12 ${className}`}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{ duration: 0.5 }}
         >
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-2">
@@ -23,7 +23,7 @@ export function SectionTitle({ title, subtitle, className = '' }: SectionTitlePr
                 className="w-20 h-1 mx-auto mb-4 rounded-full bg-gradient-to-r from-primary to-secondary"
                 initial={{ scaleX: 0 }}
                 whileInView={{ scaleX: 1 }}
-                viewport={{ once: true }}
+                viewport={{ once: false }}
                 transition={{ duration: 0.5, delay: 0.2 }}
             />
             {subtitle && (

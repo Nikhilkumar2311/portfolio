@@ -121,7 +121,7 @@ export function Contact() {
                     <motion.div
                         initial={{ opacity: 0, x: -20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 0.5 }}
                         className="flex flex-col"
                     >
@@ -130,7 +130,7 @@ export function Contact() {
                             className="mb-6 inline-flex items-center gap-2 px-4 py-2 bg-green-400/10 border border-green-400/30 rounded-full w-fit"
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true }}
+                            viewport={{ once: false }}
                             transition={{ duration: 0.4, delay: 0.2 }}
                         >
                             <span className="relative flex h-2.5 w-2.5">
@@ -153,7 +153,7 @@ export function Contact() {
                                         className="flex items-center gap-4 p-4 bg-surface rounded-xl border border-border hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group relative cursor-pointer"
                                         initial={{ opacity: 0, x: -20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         transition={{ duration: 0.4, delay: index * 0.1 }}
                                         whileHover={{ x: 8, scale: 1.02 }}
                                     >
@@ -196,7 +196,7 @@ export function Contact() {
                                         className="flex items-center gap-4 p-4 bg-surface rounded-xl border border-border hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 group relative"
                                         initial={{ opacity: 0, x: -20 }}
                                         whileInView={{ opacity: 1, x: 0 }}
-                                        viewport={{ once: true }}
+                                        viewport={{ once: false }}
                                         transition={{ duration: 0.4, delay: index * 0.1 }}
                                         whileHover={{ x: 8, scale: 1.02 }}
                                     >
@@ -218,7 +218,7 @@ export function Contact() {
                     <motion.div
                         initial={{ opacity: 0, x: 20 }}
                         whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
+                        viewport={{ once: false }}
                         transition={{ duration: 0.5 }}
                     >
                         <Card hover={false} className="relative overflow-hidden border-primary/20 hover:border-primary/40 transition-colors">

@@ -8,7 +8,7 @@ function SkillBadge({ name, delay }: { name: string; delay: number }) {
             className="px-4 py-2 rounded-full bg-surface border border-border text-text-primary text-sm font-medium hover:border-primary/50 hover:bg-primary/5 transition-all cursor-default"
             initial={{ opacity: 0, scale: 0.8, y: 10 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{
                 duration: 0.4,
                 delay,
@@ -33,7 +33,7 @@ function TierCard({ tier, index }: { tier: SkillTier; index: number }) {
             className={`relative p-6 rounded-2xl border ${tier.borderColor} ${tier.bgColor} backdrop-blur-sm overflow-hidden`}
             initial={{ opacity: 0, y: 40, scale: 0.95 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             transition={{
                 duration: 0.6,
                 delay: index * 0.15,
@@ -105,7 +105,7 @@ export function Skills() {
                     className="mt-12 text-center"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: false }}
                     transition={{ duration: 0.5, delay: 0.5 }}
                 >
                     <p className="text-text-secondary text-sm">
