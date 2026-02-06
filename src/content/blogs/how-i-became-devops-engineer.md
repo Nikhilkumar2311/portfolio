@@ -2,7 +2,7 @@
 title: How I Became the DevOps Engineer in My Company
 slug: how-i-became-devops-engineer
 excerpt: How I transitioned from a full-stack developer to handling DevOps and cloud responsibilities in my company.
-coverImage: /blogs/how-i-became-devops.png
+coverImage: /blogs/how-i-became-devops.webp
 tags:
   - DevOps
   - CI/CD
