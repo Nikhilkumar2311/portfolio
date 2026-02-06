@@ -10,7 +10,7 @@ tags:
   - Docker
   - AWS
   - Cloud Engineering
-publishedAt: 2026-01-25
+publishedAt: 2026-02-06
 ---
 
 # Building a Production-Grade CI/CD Pipeline - From Commit to Safe Production
