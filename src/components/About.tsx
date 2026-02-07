@@ -159,7 +159,7 @@ export function About() {
                 <h4 className="text-text-primary font-semibold text-sm md:text-base mb-2">
                   {step.title}
                 </h4>
-                <p className="text-text-secondary text-xs md:text-sm leading-relaxed max-w-[160px]">
+                <p className="text-text-secondary text-xs md:text-sm leading-relaxed max-w-40">
                   {step.description}
                 </p>
               </motion.div>

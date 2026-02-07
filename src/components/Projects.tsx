@@ -67,7 +67,7 @@ function DiagramModal({
                         {/* Header */}
                         <div className="flex items-center justify-between p-4 border-b border-border">
                             <h3 className="text-lg font-semibold text-text-primary">
-                                {title} - Architecture
+                                {title}
                             </h3>
                             <button
                                 onClick={onClose}
@@ -81,7 +81,7 @@ function DiagramModal({
                         <div className="p-4 overflow-auto max-h-[calc(80vh-80px)]">
                             <img
                                 src={imageSrc}
-                                alt={`${title} Architecture Diagram`}
+                                alt={`${title}`}
                                 className="w-full h-auto rounded-lg"
                             />
                         </div>
@@ -199,7 +199,7 @@ export function Projects() {
                                                 <div className="p-2 rounded-lg bg-primary/10">
                                                     <Image size={18} className="text-primary" />
                                                 </div>
-                                                <span className="text-text-secondary text-sm">View Architecture Diagram</span>
+                                                <span className="text-text-secondary text-sm">View Diagram</span>
                                             </button>
                                         )}
 

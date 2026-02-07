@@ -11,7 +11,7 @@ export const projects: Project[] = [
         techStack: ['GitHub Actions', 'Docker', 'AWS EC2', 'Shell Script'],
         githubUrl: 'https://github.com/Nikhilkumar2311/CI-CD-PIPELINE',
         liveUrl: undefined,
-        architectureDiagram: '/diagrams/cicd-pipeline.png',
+        architectureDiagram: '/diagrams/cicd-pipeline.webp',
     },
     {
         title: 'Infrastructure as Code',
@@ -28,14 +28,14 @@ export const projects: Project[] = [
     {
         title: 'Monitoring Stack Setup',
         description: 'Complete monitoring solution with Prometheus for metrics collection and Grafana for visualization.',
-        status: 'in-progress',
+        status: 'completed',
         problem: 'No visibility into application performance or system health.',
         solution: 'Setting up Prometheus + Grafana + Loki stack with Docker Compose for observability.',
         outcome: 'Real-time dashboards and alerting for proactive issue detection.',
         techStack: ['Prometheus', 'Grafana', 'Docker Compose', 'Loki'],
-        githubUrl: 'https://github.com/Nikhilkumar2311',
+        githubUrl: 'https://github.com/Nikhilkumar2311/CI-CD-PIPELINE-MONITORING',
         liveUrl: undefined,
-        architectureDiagram: undefined,
+        architectureDiagram: "/diagrams/monitoring.webp",
     },
     {
         title: 'Containerized Web Application',
