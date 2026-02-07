@@ -108,7 +108,7 @@ export function About() {
 
         {/* Stats Grid */}
         <motion.div
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 max-w-4xl mx-auto"
+          className="flex flex-wrap justify-center gap-6 mb-16 max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -117,7 +117,7 @@ export function About() {
           {stats.map((stat, index) => (
             <motion.div
               key={stat.label}
-              className="text-center p-4 rounded-xl bg-surface/50 border border-border hover:border-primary/30 transition-colors"
+              className="text-center p-4 rounded-xl bg-surface/50 border border-border hover:border-primary/30 transition-colors w-full sm:w-48"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: false }}

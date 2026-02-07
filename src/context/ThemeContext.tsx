@@ -10,7 +10,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-    const [theme, setTheme] = useState<Theme>('dark');
+    const [theme, setTheme] = useState<Theme>('light');
 
     const applyTheme = (newTheme: Theme) => {
         const root = document.documentElement;
@@ -28,6 +28,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         }
     };
 
+    const updateThemeColor = (currentTheme: Theme) => {
+        const metaThemeColor = document.querySelector("meta[name='theme-color']");
+        if (metaThemeColor) {
+            metaThemeColor.setAttribute('content', currentTheme === 'light' ? '#FFFFFF' : '#0B0F19');
+        }
+    };
+
     // Initialize theme from localStorage or default to dark
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme') as Theme | null;
@@ -35,11 +42,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
             setTheme(savedTheme);
             applyTheme(savedTheme);
             updateFavicon(savedTheme);
+            updateThemeColor(savedTheme);
         } else {
-            // Default to dark mode
-            setTheme('dark');
-            applyTheme('dark');
-            updateFavicon('dark');
+            // Default to light mode
+            setTheme('light');
+            applyTheme('light');
+            updateFavicon('light');
+            updateThemeColor('light');
         }
     }, []);
 
@@ -49,6 +58,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         localStorage.setItem('theme', newTheme);
         applyTheme(newTheme);
         updateFavicon(newTheme);
+        updateThemeColor(newTheme);
     };
 
     return (

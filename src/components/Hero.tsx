@@ -1,5 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
-import { Download, FolderGit2 } from "lucide-react";
+import { FolderGit2 } from "lucide-react";
 import { Button } from "./ui/Button";
 import { TextReveal } from "./ui/AceternityEffects";
 import { Typewriter, DotGrid } from "./ui/ProfessionalEffects";
@@ -48,7 +48,7 @@ export function Hero() {
           transition={{ repeat: Infinity, duration: 10, ease: "easeInOut", delay: 1 }}
         />
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-primary/10 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.3, 0.5, 0.3],
@@ -83,7 +83,7 @@ export function Hero() {
             >
               <Typewriter
                 words={["DevOps Cloud Engineer", "CI/CD", "Cloud Architect", "AWS", "Full Stack Developer"]}
-                className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+                className="bg-linear-to-r from-primary to-secondary bg-clip-text text-transparent"
                 typingSpeed={80}
                 deletingSpeed={40}
                 delayBetweenWords={3000}
@@ -112,10 +112,6 @@ export function Hero() {
                 <FolderGit2 size={20} />
                 View Projects
               </Button>
-              <Button variant="outline" href="/resume.pdf">
-                <Download size={20} />
-                Download Resume
-              </Button>
             </motion.div>
           </motion.div>
 
@@ -129,7 +125,7 @@ export function Hero() {
             <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-80 lg:h-80 xl:w-96 xl:h-96">
               {/* Ambient glow effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-primary/30 via-primary/10 to-secondary/30 rounded-2xl blur-2xl"
+                className="absolute inset-0 bg-linear-to-br from-primary/30 via-primary/10 to-secondary/30 rounded-2xl blur-2xl"
                 animate={{
                   opacity: [0.5, 0.8, 0.5],
                   scale: [1, 1.05, 1]
@@ -139,7 +135,7 @@ export function Hero() {
 
               {/* Gradient border container */}
               <motion.div
-                className="relative w-full h-full p-0.5 rounded-2xl bg-gradient-to-br from-primary via-primary/50 to-secondary"
+                className="relative w-full h-full p-0.5 rounded-2xl bg-linear-to-br from-primary via-primary/50 to-secondary"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.3 }}
               >
@@ -152,7 +148,7 @@ export function Hero() {
                     loading="eager"
                     fetchPriority="high"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/20 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-background/20 via-transparent to-transparent" />
                 </div>
               </motion.div>
 
