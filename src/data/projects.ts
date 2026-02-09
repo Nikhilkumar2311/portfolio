@@ -33,7 +33,7 @@ export const projects: Project[] = [
         solution: 'Setting up Prometheus + Grafana + Loki stack with Docker Compose for observability.',
         outcome: 'Real-time dashboards and alerting for proactive issue detection.',
         techStack: ['Prometheus', 'Grafana', 'Docker Compose', 'Loki'],
-        githubUrl: 'https://github.com/Nikhilkumar2311/CI-CD-PIPELINE-MONITORING',
+        githubUrl: 'https://github.com/Nikhilkumar2311/CI-CD-PIPELINE',
         liveUrl: undefined,
         architectureDiagram: "/diagrams/monitoring.webp",
     },
