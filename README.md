@@ -39,13 +39,6 @@ A modern, responsive portfolio website showcasing my journey as a **DevOps & Clo
 ## 📧 Contact
 
 - 🌐 Website: [nikhilkumar.tech](https://nikhilkumar.tech)
-- 💼 LinkedIn: [Nikhil Kumar](https://linkedin.com/in/nikhilkumar2311)
-- 🐙 GitHub: [@Nikhilkumar2311](https://github.com/Nikhilkumar2311)
+- 💼 LinkedIn: [Nikhil Kumar](https://www.linkedin.com/in/nikhilkumar0908)
 
 ---
-
-<div align="center">
-
-Made with ❤️ by Nikhil Kumar
-
-</div>
