@@ -10,6 +10,7 @@ tags:
   - Docker
   - AWS
   - Cloud Engineering
+  - Project
 publishedAt: 2026-02-06
 ---
 

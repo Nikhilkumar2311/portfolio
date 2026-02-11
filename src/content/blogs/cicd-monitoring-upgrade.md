@@ -11,6 +11,7 @@ tags:
   - Prometheus
   - Grafana
   - Loki
+  - Project
 publishedAt: 2026-02-09
 ---
 

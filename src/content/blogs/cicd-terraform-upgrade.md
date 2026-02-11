@@ -10,6 +10,7 @@ tags:
   - Infrastructure as Code
   - AWS
   - EC2
+  - Project
 publishedAt: 2026-02-11
 ---
 
