@@ -1,5 +1,6 @@
 {
   "name": "portfolio",
+  "description": "A modern, responsive portfolio and technical blog for a DevOps & Cloud Engineer.",
   "private": true,
   "version": "0.0.0",
   "type": "module",

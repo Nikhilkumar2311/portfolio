@@ -42,7 +42,7 @@ export function Experience() {
                     <div className="relative pl-8 md:pl-12">
                         {/* Timeline Line with animated gradient */}
                         <motion.div
-                            className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-secondary to-primary/30"
+                            className="absolute left-0 md:left-4 top-0 bottom-0 w-0.5 bg-linear-to-b from-primary via-secondary to-primary/30"
                             initial={{ scaleY: 0, originY: 0 }}
                             whileInView={{ scaleY: 1 }}
                             viewport={{ once: false }}

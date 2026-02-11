@@ -30,6 +30,7 @@ export const skillTiers: SkillTier[] = [
             { name: 'Grafana' },
             { name: 'Docker Compose' },
             { name: 'ECS / ECR' },
+            { name: 'Terraform' },
         ],
     },
     {
@@ -60,9 +61,8 @@ export const skillTiers: SkillTier[] = [
         borderColor: 'border-secondary/30',
         skills: [
             { name: 'Kubernetes' },
-            { name: 'Terraform' },
-            { name: 'Ansible' },
-            { name: 'ArgoCD' },
+            // { name: 'Ansible' },
+            // { name: 'ArgoCD' },
         ],
     },
 ];

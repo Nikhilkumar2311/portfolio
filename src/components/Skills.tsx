@@ -46,7 +46,7 @@ function TierCard({ tier, index }: { tier: SkillTier; index: number }) {
         >
             {/* Subtle gradient overlay on hover */}
             <motion.div
-                className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0"
+                className="absolute inset-0 bg-linear-to-br from-primary/5 to-secondary/5 opacity-0"
                 whileHover={{ opacity: 1 }}
                 transition={{ duration: 0.3 }}
             />
