@@ -4,10 +4,7 @@ slug: cicd-monitoring-upgrade
 excerpt: How I extended an existing CI/CD pipeline by adding real-time monitoring and centralized logging to make deployments observable and failure-aware.
 coverImage: /blogs/cicd-monitoring-upgrade.webp
 tags:
-  - DevOps
-  - CI/CD
   - Monitoring
-  - Observability
   - Prometheus
   - Grafana
   - Loki

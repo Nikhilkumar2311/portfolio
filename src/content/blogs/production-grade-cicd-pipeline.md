@@ -4,7 +4,6 @@ slug: production-grade-cicd-pipeline
 excerpt: How I designed and implemented an end-to-end CI/CD pipeline focused on deployment safety, observability, and automatic rollback - not just automation.
 coverImage: /blogs/production-grade-cicd-pipeline.webp
 tags:
-  - DevOps
   - CI/CD
   - GitHub Actions
   - Docker

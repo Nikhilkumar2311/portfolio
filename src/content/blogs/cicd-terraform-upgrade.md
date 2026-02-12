@@ -4,10 +4,7 @@ slug: cicd-terraform-upgrade
 excerpt: How I extended an existing CI/CD pipeline by introducing Terraform to provision AWS infrastructure declaratively and make deployments reproducible, stable, and production-aware.
 coverImage: /blogs/cicd-terraform-upgrade.webp
 tags:
-  - DevOps
-  - CI/CD
   - Terraform
-  - Infrastructure as Code
   - AWS
   - EC2
   - Project
