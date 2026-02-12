@@ -1,7 +1,7 @@
 ---
 title: Things I Didn’t Understand About Terraform Until I Broke My Infrastructure
 slug: terraform-lessons-from-breaking-infra
-excerpt: Terraform looked simple at first—until it started deleting, recreating, and refusing to touch my infrastructure. This is what I learned by actually breaking things.
+excerpt: Terraform looked simple at first-until it started deleting, recreating, and refusing to touch my infrastructure. This is what I learned by actually breaking things.
 coverImage: /blogs/terraform-lessons-from-breaking-infra.webp
 tags:
   - Terraform
@@ -25,7 +25,7 @@ At some point, Terraform:
 
 That’s when I realized something important:
 
-> Terraform isn’t hard because of syntax — it’s hard because of **how it thinks about infrastructure**.
+> Terraform isn’t hard because of syntax - it’s hard because of **how it thinks about infrastructure**.
 
 This blog is about the lessons I learned **only after breaking my infrastructure**.
 
@@ -49,7 +49,7 @@ Terraform instead works on a **desired state model**.
 You don’t tell Terraform *how* to create infrastructure.  
 You tell it *what the final state should look like*.
 
-How it gets there is Terraform’s decision — not yours.
+How it gets there is Terraform’s decision - not yours.
 
 ---
 
@@ -118,7 +118,7 @@ The state file tells Terraform:
 - Which provider version was used
 - What attributes belong to each resource
 
-When I ran into provider version mismatch errors and Terraform refused to continue, it wasn’t being annoying — it was protecting my infrastructure.
+When I ran into provider version mismatch errors and Terraform refused to continue, it wasn’t being annoying - it was protecting my infrastructure.
 
 That’s when I realized:
 
@@ -131,7 +131,7 @@ This changed how I approached every Terraform command.
 
 ## Why Terraform Refused to Destroy My Infrastructure
 
-At one point, I tried to run `terraform destroy` — and Terraform stopped me.
+At one point, I tried to run `terraform destroy` - and Terraform stopped me.
 
 The error message said the resources were created by a **newer provider version**.
 
@@ -168,7 +168,7 @@ That’s when I learned:
 
 Terraform responded by recreating the instance instead.
 
-This wasn’t Terraform being aggressive — it was Terraform being correct.
+This wasn’t Terraform being aggressive - it was Terraform being correct.
 
 Infrastructure initialization is a **one-time contract**.
 
@@ -213,4 +213,4 @@ In the next blog, I’ll go deeper into the most misunderstood part of Terraform
 
 👉 **Why Terraform Is Really About State (And Why Everything Breaks When You Ignore It)**
 
-Because once you understand state, Terraform stops being scary — and starts being powerful.
+Because once you understand state, Terraform stops being scary - and starts being powerful.
