@@ -13,7 +13,7 @@ tags:
 publishedAt: 2026-02-06
 ---
 
-# Building a Production-Grade CI/CD Pipeline - From Commit to Safe Production
+## Building a Production-Grade CI/CD Pipeline - From Commit to Safe Production
 
 Most CI/CD pipelines focus on automation - running builds and deploying code automatically.
 
@@ -25,7 +25,7 @@ In this blog, I’ll walk through how I designed and built an end-to-end CI/CD p
 
 ---
 
-## Why Automation Alone Is Not Enough
+### Why Automation Alone Is Not Enough
 
 One of the most important lessons from this project was realizing that:
 
@@ -38,7 +38,7 @@ This realization shaped how I designed every stage of the pipeline - especially 
 
 ---
 
-## High-Level Architecture Overview
+### High-Level Architecture Overview
 
 At a high level, the pipeline works as follows:
 
@@ -58,7 +58,7 @@ This structure ensures traceability, safety, and controlled deployments.
 
 ---
 
-## Continuous Integration as a Quality Gate
+### Continuous Integration as a Quality Gate
 
 The pipeline begins with Continuous Integration using GitHub Actions.
 
@@ -80,7 +80,7 @@ This phase ensured that only verified code could move forward.
 
 ---
 
-## Containerization & Artifact Design
+### Containerization & Artifact Design
 
 Next, I containerized the application using Docker to ensure consistency across environments.
 
@@ -97,7 +97,7 @@ Dockerizing the application made the pipeline reproducible and predictable.
 
 ---
 
-## Image Versioning & Registry Strategy
+### Image Versioning & Registry Strategy
 
 To make deployments traceable and rollback-safe, I integrated Docker Hub as a container registry.
 
@@ -117,7 +117,7 @@ Artifacts are now treated as first-class production assets.
 
 ---
 
-## Automated Deployment to AWS EC2
+### Automated Deployment to AWS EC2
 
 In the final stage, the pipeline automatically deploys Docker images to an AWS EC2 instance.
 
@@ -139,7 +139,7 @@ This phase completed the end-to-end automation.
 
 ---
 
-## Designing for Deployment Safety
+### Designing for Deployment Safety
 
 This was the most important part of the project.
 
@@ -157,7 +157,7 @@ This transformed the pipeline from “automated” to **production-grade**.
 
 ---
 
-## Observability & Failure Visibility
+### Observability & Failure Visibility
 
 Another critical lesson was realizing how many failures are silent without proper visibility.
 
@@ -173,7 +173,7 @@ Observability is not an add-on - it is a requirement for safe deployments.
 
 ---
 
-## What Broke & What I Learned
+### What Broke & What I Learned
 
 This project involved real issues that improved my understanding:
 
@@ -186,7 +186,7 @@ Each failure helped me design a more resilient system.
 
 ---
 
-## Final Takeaways
+### Final Takeaways
 
 CI/CD is not about wiring tools together.
 
@@ -200,7 +200,7 @@ This project changed how I think about production deployments and reinforced why
 
 ---
 
-## What’s Next
+### What’s Next
 
 To build on this foundation, I’m currently learning:
 

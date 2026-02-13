@@ -11,7 +11,7 @@ tags:
 publishedAt: 2026-02-11
 ---
 
-# Upgrading a CI/CD Pipeline with Terraform (Infrastructure as Code)
+## Upgrading a CI/CD Pipeline with Terraform (Infrastructure as Code)
 
 I had already built a **production-style CI/CD pipeline** that automated testing, container builds, and deployments to AWS EC2.
 
@@ -25,7 +25,7 @@ This upgrade focuses on solving that problem by introducing **Terraform**, turni
 
 ---
 
-## Quick Recap: Existing CI/CD Pipeline
+### Quick Recap: Existing CI/CD Pipeline
 
 At a high level, the existing CI/CD pipeline works as follows:
 
@@ -47,7 +47,7 @@ The monitoring and runtime visibility layer added later is explained in detail h
 
 ---
 
-## Why Infrastructure as Code Was Needed
+### Why Infrastructure as Code Was Needed
 
 The main issue became clear over time:
 
@@ -63,7 +63,7 @@ Terraform was introduced to eliminate these risks.
 
 ---
 
-## Infrastructure Architecture Overview
+### Infrastructure Architecture Overview
 
 The infrastructure defined using Terraform consists of:
 
@@ -78,7 +78,7 @@ All components are defined declaratively, with dependencies handled automaticall
 
 ---
 
-## Provisioning Infrastructure with Terraform
+### Provisioning Infrastructure with Terraform
 
 Terraform is used to provision and manage infrastructure - not deploy application code.
 
@@ -92,7 +92,7 @@ This removes manual AWS Console configuration and reduces drift.
 
 ---
 
-## Automated Server Bootstrapping
+### Automated Server Bootstrapping
 
 EC2 instances are configured automatically at launch using **user-data**.
 
@@ -111,7 +111,7 @@ Infrastructure failures no longer require repair - they require replacement.
 
 ---
 
-## What This Upgrade Changed
+### What This Upgrade Changed
 
 Before:
 - CI/CD was automated  
@@ -129,7 +129,7 @@ The pipeline now controls both delivery and the environment it runs in.
 
 ---
 
-## Infrastructure Safety & Stability
+### Infrastructure Safety & Stability
 
 Automation alone is not enough - safety matters.
 
@@ -143,7 +143,7 @@ This separation ensures safe deployments and controlled infrastructure evolution
 
 ---
 
-## What Broke & What I Learned
+### What Broke & What I Learned
 
 While implementing Terraform, several real-world issues surfaced:
 
@@ -158,7 +158,7 @@ Each issue reinforced an important lesson:
 
 ---
 
-## Final Takeaways
+### Final Takeaways
 
 This upgrade reinforced a critical mindset shift:
 
@@ -173,7 +173,7 @@ Infrastructure as Code is not optional for production systems - it is foundation
 
 ---
 
-## What’s Next
+### What’s Next
 
 To build on this foundation, future improvements include:
 - Remote Terraform state with S3 and DynamoDB locking  

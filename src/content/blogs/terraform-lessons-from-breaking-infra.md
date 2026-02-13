@@ -9,7 +9,7 @@ tags:
 publishedAt: 2026-02-12
 ---
 
-# Things I Didn’t Understand About Terraform Until I Broke My Infrastructure
+## Things I Didn’t Understand About Terraform Until I Broke My Infrastructure
 
 When I first started using Terraform, it felt deceptively simple.
 
@@ -31,7 +31,7 @@ This blog is about the lessons I learned **only after breaking my infrastructure
 
 ---
 
-## I Thought Terraform Was Just “AWS Automation”
+### I Thought Terraform Was Just “AWS Automation”
 
 My initial mental model was simple:
 
@@ -53,7 +53,7 @@ How it gets there is Terraform’s decision - not yours.
 
 ---
 
-## Declarative Infrastructure Changes Everything
+### Declarative Infrastructure Changes Everything
 
 This was the first major shift I struggled with.
 
@@ -80,7 +80,7 @@ This is why Terraform sometimes deletes resources **you didn’t expect it to to
 
 ---
 
-## Terraform Is Willing to Break Things (To Fix Them)
+### Terraform Is Willing to Break Things (To Fix Them)
 
 One of the hardest lessons was understanding this behavior:
 
@@ -104,7 +104,7 @@ Once I accepted that idea, Terraform started making sense.
 
 ---
 
-## State Is the Real Infrastructure
+### State Is the Real Infrastructure
 
 I used to think Terraform configuration files were the source of truth.
 
@@ -129,7 +129,7 @@ This changed how I approached every Terraform command.
 
 ---
 
-## Why Terraform Refused to Destroy My Infrastructure
+### Why Terraform Refused to Destroy My Infrastructure
 
 At one point, I tried to run `terraform destroy` - and Terraform stopped me.
 
@@ -152,7 +152,7 @@ Terraform choosing **not to act** was the safest outcome.
 
 ---
 
-## User Data Taught Me About Immutability
+### User Data Taught Me About Immutability
 
 Another painful lesson came from EC2 user-data.
 
@@ -174,7 +174,7 @@ Infrastructure initialization is a **one-time contract**.
 
 ---
 
-## Breaking Infrastructure Is Part of Learning Terraform
+### Breaking Infrastructure Is Part of Learning Terraform
 
 The biggest realization was this:
 
@@ -191,7 +191,7 @@ Terraform forced me to think in terms of **systems**, not servers.
 
 ---
 
-## Final Takeaway
+### Final Takeaway
 
 Terraform isn’t about EC2, VPCs, or AWS.
 
@@ -207,7 +207,7 @@ It became predictable.
 
 ---
 
-## What’s Next
+### What’s Next
 
 In the next blog, I’ll go deeper into the most misunderstood part of Terraform:
 

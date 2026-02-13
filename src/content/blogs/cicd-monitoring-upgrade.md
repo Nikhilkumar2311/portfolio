@@ -12,7 +12,7 @@ tags:
 publishedAt: 2026-02-09
 ---
 
-# Upgrading a CI/CD Pipeline with Monitoring & Observability
+## Upgrading a CI/CD Pipeline with Monitoring & Observability
 
 I had already built a **production-style CI/CD pipeline** that automated testing, container builds, and deployments to AWS EC2.
 
@@ -26,7 +26,7 @@ This upgrade focuses on solving that problem by adding **monitoring and centrali
 
 ---
 
-## Quick Recap: Existing CI/CD Pipeline
+### Quick Recap: Existing CI/CD Pipeline
 
 At a high level, the existing CI/CD pipeline works as follows:
 
@@ -44,7 +44,7 @@ The full CI/CD design, failure handling, and deployment safety mechanisms are ex
 
 ---
 
-## Why Monitoring Was Needed
+### Why Monitoring Was Needed
 
 Even with safe deployments, I realized an important limitation:
 
@@ -62,7 +62,7 @@ To solve this, I upgraded the infrastructure to answer three questions:
 
 ---
 
-## Monitoring Architecture Overview
+### Monitoring Architecture Overview
 
 The monitoring stack introduced consists of:
 
@@ -75,7 +75,7 @@ All components run as Docker containers and are deployed alongside the applicati
 
 ---
 
-## Metrics with Prometheus & Grafana
+### Metrics with Prometheus & Grafana
 
 Prometheus scrapes application metrics at regular intervals.
 
@@ -89,7 +89,7 @@ Instead of reacting to failures, the system now **shows early warning signs** be
 
 ---
 
-## Centralized Logging with Loki
+### Centralized Logging with Loki
 
 Before this upgrade, debugging meant:
 - SSH into the server  
@@ -104,7 +104,7 @@ This dramatically reduces debugging time and improves incident response.
 
 ---
 
-## What This Upgrade Changed
+### What This Upgrade Changed
 
 Before:
 - Deployments were automated  
@@ -121,7 +121,7 @@ The pipeline now answers *what broke*, *when*, and *why*.
 
 ---
 
-## Deployment Safety
+### Deployment Safety
 
 A CI/CD pipeline can deploy code automatically — but without safety mechanisms, it can still introduce silent failures.
 
@@ -137,7 +137,7 @@ This ensures that automation never replaces a working system with a broken one.
 
 ---
 
-## Observability & Failure Visibility
+### Observability & Failure Visibility
 
 One of the biggest upgrades in this project was visibility.
 
@@ -153,7 +153,7 @@ Together, they turn failures into actionable signals instead of surprises.
 
 ---
 
-## What Broke & What I Learned
+### What Broke & What I Learned
 
 This upgrade surfaced several real-world issues:
 
@@ -169,7 +169,7 @@ Debugging these problems improved my understanding of how monitoring systems beh
 
 ---
 
-## Final Takeaways
+### Final Takeaways
 
 This project reinforced a critical mindset shift:
 
@@ -185,7 +185,7 @@ It is a core requirement for production systems.
 
 ---
 
-## What’s Next
+### What’s Next
 
 To build on this foundation, my next focus areas include:
 - Infrastructure as Code using Terraform  
