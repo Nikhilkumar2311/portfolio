@@ -44,7 +44,7 @@ export const projects: Project[] = [
         problem: 'Development environment differed from production, causing "works on my machine" issues.',
         solution: 'Containerizing all services with Docker and using Compose for orchestration.',
         outcome: 'Consistent environments from dev to production with easy scaling.',
-        techStack: ['Docker', 'Nginx', 'Node.js', 'PostgreSQL'],
+        techStack: ['Docker', 'Nginx', 'Node.js'],
         githubUrl: 'https://github.com/Nikhilkumar2311',
         liveUrl: undefined,
         architectureDiagram: undefined,
