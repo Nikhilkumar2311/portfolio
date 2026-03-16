@@ -9,7 +9,7 @@ tags:
 publishedAt: 2026-02-22
 ---
 
-# What Terraform Taught Me About Designing Reliable Infrastructure
+## What Terraform Taught Me About Designing Reliable Infrastructure
 
 When I started using Terraform, my goal was simple:
 
@@ -23,7 +23,7 @@ This final blog summarizes the key lessons that reshaped how I think about syste
 
 ---
 
-## Reliability Starts with Reproducibility
+### Reliability Starts with Reproducibility
 
 Manual setups create hidden differences.
 
@@ -36,7 +36,7 @@ If infrastructure can’t be recreated, it can’t be trusted.
 
 ---
 
-## Replacement Is Safer Than Repair
+### Replacement Is Safer Than Repair
 
 Before Terraform, I treated servers like machines to maintain.
 
@@ -49,7 +49,7 @@ Predictability comes from replacement, not patching.
 
 ---
 
-## Infrastructure Should Be Disposable
+### Infrastructure Should Be Disposable
 
 Reliable systems assume failure.
 
@@ -62,7 +62,7 @@ If losing an instance causes panic, the architecture needs improvement.
 
 ---
 
-## Stable Access Matters More Than Stable Instances
+### Stable Access Matters More Than Stable Instances
 
 Elastic IP taught me an important distinction:
 
@@ -76,7 +76,7 @@ Stable endpoints ensure:
 
 ---
 
-## Initialization Should Be Automated
+### Initialization Should Be Automated
 
 Manual setup introduces inconsistency.
 
@@ -89,7 +89,7 @@ Infrastructure should configure itself.
 
 ---
 
-## Visibility Before Change Prevents Disaster
+### Visibility Before Change Prevents Disaster
 
 Terraform’s plan step forces visibility.
 
@@ -102,7 +102,7 @@ Visibility is a reliability feature.
 
 ---
 
-## Simplicity Improves Reliability
+### Simplicity Improves Reliability
 
 Complex infrastructure increases failure points.
 
@@ -115,7 +115,7 @@ Reliability often comes from simplicity, not complexity.
 
 ---
 
-## Designing for Failure Improves Stability
+### Designing for Failure Improves Stability
 
 Infrastructure should assume:
 - instances will fail
@@ -126,7 +126,7 @@ Designing with failure in mind creates systems that continue functioning under c
 
 ---
 
-## Final Takeaway
+### Final Takeaway
 
 Terraform didn’t just help me provision infrastructure.
 
@@ -142,7 +142,7 @@ Infrastructure reliability isn’t achieved through perfection - it’s achieved
 
 ---
 
-## Closing the Terraform Series
+### Closing the Terraform Series
 
 This series explored:
 - breaking infrastructure and learning Terraform’s model  
