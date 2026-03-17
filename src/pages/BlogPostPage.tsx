@@ -28,7 +28,7 @@ export function BlogPostPage() {
 
     // Redirect to blog list if post not found
     if (!post) {
-        return <Navigate to="/blog" replace />;
+        return <Navigate to="/blogs" replace />;
     }
 
     return (
@@ -36,7 +36,7 @@ export function BlogPostPage() {
             <SEOHead
                 title={post.title}
                 description={post.excerpt}
-                canonicalUrl={`/blog/${post.slug}`}
+                canonicalUrl={`/blogs/${post.slug}`}
                 ogImage={post.coverImage}
                 ogType="article"
                 publishedAt={post.publishedAt}
@@ -53,7 +53,7 @@ export function BlogPostPage() {
                         className="mb-8"
                     >
                         <Link
-                            to="/blog"
+                            to="/blogs"
                             className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors"
                         >
                             <ArrowLeft size={18} />
@@ -147,7 +147,7 @@ export function BlogPostPage() {
                                     {relatedPosts.map((relatedPost) => (
                                         <Link
                                             key={relatedPost.slug}
-                                            to={`/blog/${relatedPost.slug}`}
+                                            to={`/blogs/${relatedPost.slug}`}
                                             onClick={() => window.scrollTo({ top: 0, behavior: 'instant' })}
                                             className="block p-4 rounded-xl border border-border bg-surface/50 hover:border-primary/50 transition-colors"
                                         >

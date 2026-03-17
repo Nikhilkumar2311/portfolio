@@ -35,7 +35,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
                             transition={{ delay: 0.1 * index }}
                         >
                             <Link
-                                to={`/blog/${post.slug}`}
+                                to={`/blogs/${post.slug}`}
                                 onClick={scrollToTop}
                                 className="group block p-3 -mx-1 rounded-lg hover:bg-primary/5 transition-colors"
                             >

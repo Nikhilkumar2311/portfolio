@@ -18,7 +18,7 @@ export function BlogCard({ post, index = 0 }: BlogCardProps) {
             transition={{ duration: 0.5, delay: index * 0.1 }}
         >
             <Link
-                to={`/blog/${post.slug}`}
+                to={`/blogs/${post.slug}`}
                 className="group block h-full rounded-2xl border border-border bg-surface/50 backdrop-blur-sm overflow-hidden hover:border-primary/50 transition-all duration-300"
             >
                 {/* Cover Image */}

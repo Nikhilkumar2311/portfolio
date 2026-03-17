@@ -1,5 +1,5 @@
 ---
-title: I Almost Automated Terraform in CI - Here’s Why I Didn’t
+title: "I Almost Automated Terraform in CI: Here’s Why I Didn’t"
 slug: terraform-ci-automation-decision
 excerpt: Automating Terraform in CI sounds efficient, but it can introduce serious risks. Here’s why I chose a safer workflow.
 coverImage: /blogs/terraform-ci-automation-decision.webp
@@ -9,12 +9,12 @@ tags:
 publishedAt: 2026-02-20
 ---
 
-## I Almost Automated Terraform in CI - Here’s Why I Didn’t
+## I Almost Automated Terraform in CI: Here’s Why I Didn’t
 
 After integrating Terraform into my infrastructure workflow, the next logical step seemed obvious:
 
 Automate it.
-
+  
 If CI/CD can deploy applications automatically, why not let Terraform automatically apply infrastructure changes?
 
 It sounds efficient.  

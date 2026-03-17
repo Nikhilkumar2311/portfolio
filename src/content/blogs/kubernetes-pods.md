@@ -154,7 +154,7 @@ If a node fails:
 - Kubernetes schedules a new pod on another node
 
 This behavior is part of Kubernete's self-healing design. Pods are meant to be temporary and replaceable. They are not treated like long-lived servers.
-
+  
 ---
 
 ### Pods Are Meant to Be Disposable

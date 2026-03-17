@@ -30,7 +30,7 @@ export function BlogListPage() {
             <SEOHead
                 title="Blog"
                 description="DevOps insights, tutorials, and learnings. Explore articles on AWS, Docker, Kubernetes, CI/CD, and cloud infrastructure."
-                canonicalUrl="/blog"
+                canonicalUrl="/blogs"
             />
 
             <section className="min-h-screen py-20 md:py-32">

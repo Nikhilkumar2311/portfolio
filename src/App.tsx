@@ -5,6 +5,7 @@ import { Layout, HomePage } from './pages';
 // Lazy load blog pages - they're not needed on initial load
 const BlogListPage = lazy(() => import('./pages/BlogListPage').then(m => ({ default: m.BlogListPage })));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 
 // Loading fallback
 const PageLoader = () => (
@@ -19,14 +20,19 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
-          <Route path="blog" element={
+          <Route path="blogs" element={
             <Suspense fallback={<PageLoader />}>
               <BlogListPage />
             </Suspense>
           } />
-          <Route path="blog/:slug" element={
+          <Route path="blogs/:slug" element={
             <Suspense fallback={<PageLoader />}>
               <BlogPostPage />
+            </Suspense>
+          } />
+          <Route path="*" element={
+            <Suspense fallback={<PageLoader />}>
+              <NotFoundPage />
             </Suspense>
           } />
         </Route>

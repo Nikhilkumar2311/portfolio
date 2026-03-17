@@ -40,7 +40,7 @@ At a high level, the existing CI/CD pipeline works as follows:
 
 The full CI/CD design, failure handling, and deployment safety mechanisms are explained in detail here:
 
-👉 **[Building a Production-Grade CI/CD Pipeline — From Commit to Safe Production](/blog/production-grade-cicd-pipeline)**
+👉 **[Building a Production-Grade CI/CD Pipeline — From Commit to Safe Production](/blogs/production-grade-cicd-pipeline)**
 
 ---
 

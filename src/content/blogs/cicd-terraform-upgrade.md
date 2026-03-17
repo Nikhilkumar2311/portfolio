@@ -39,11 +39,11 @@ At a high level, the existing CI/CD pipeline works as follows:
 
 For a complete breakdown of the CI/CD architecture and deployment safety mechanisms, refer to:
 
-👉 **[Building a Production-Grade CI/CD Pipeline — From Commit to Safe Production](/blog/production-grade-cicd-pipeline)**
+👉 **[Building a Production-Grade CI/CD Pipeline — From Commit to Safe Production](/blogs/production-grade-cicd-pipeline)**
 
 The monitoring and runtime visibility layer added later is explained in detail here:
 
-👉 **[Upgrading a CI/CD Pipeline with Monitoring & Observability](/blog/cicd-monitoring-upgrade)**
+👉 **[Upgrading a CI/CD Pipeline with Monitoring & Observability](/blogs/cicd-monitoring-upgrade)**
 
 ---
 
