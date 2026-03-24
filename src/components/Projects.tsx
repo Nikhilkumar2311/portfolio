@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Github, ExternalLink, CheckCircle2, Clock, Lightbulb, Wrench, Target, Image, X } from 'lucide-react';
+import { Github, ExternalLink, CheckCircle2, Clock, Lightbulb, Wrench, Target, Image, X, BookOpen } from 'lucide-react';
 import { SectionTitle } from './ui/SectionTitle';
 import { Button } from './ui/Button';
 import { TiltCard } from './ui/AceternityEffects';
@@ -227,6 +227,12 @@ export function Projects() {
                                                 <Button variant="secondary" href={project.liveUrl} className="text-sm px-4 py-2">
                                                     <ExternalLink size={16} />
                                                     Live Demo
+                                                </Button>
+                                            )}
+                                            {project.blogUrl && (
+                                                <Button variant="secondary" href={project.blogUrl} className="text-sm px-4 py-2">
+                                                    <BookOpen size={16} />
+                                                    Read Blog
                                                 </Button>
                                             )}
                                         </div>

@@ -5,7 +5,7 @@ excerpt: How I replaced manual Docker deployments with a fully automated, autosc
 coverImage: /blogs/cicd-kubernetes-upgrade.webp
 tags:
   - Kubernetes
-  - Projects
+  - Project
   - CI/CD
   - System Architecture
 publishedAt: 2026-03-24

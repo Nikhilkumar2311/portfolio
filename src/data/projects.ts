@@ -15,6 +15,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Nikhilkumar2311/CI-CD-PIPELINE",
     liveUrl: undefined,
     architectureDiagram: "/diagrams/cicd-pipeline.webp",
+    blogUrl: "/blogs/production-grade-cicd-pipeline",
   },
   {
     title: "Infrastructure as Code",
@@ -31,6 +32,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Nikhilkumar2311/CI-CD-PIPELINE",
     liveUrl: undefined,
     architectureDiagram: "/diagrams/terraform.webp",
+    blogUrl: "/blogs/cicd-terraform-upgrade",
   },
   {
     title: "Monitoring Stack Setup",
@@ -45,6 +47,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Nikhilkumar2311/CI-CD-PIPELINE",
     liveUrl: undefined,
     architectureDiagram: "/diagrams/monitoring.webp",
+    blogUrl: "/blogs/cicd-monitoring-upgrade",
   },
   {
     title: "Kubernetes CI/CD Architecture",
@@ -67,5 +70,6 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Nikhilkumar2311/CI-CD-PIPELINE",
     liveUrl: undefined,
     architectureDiagram: "/diagrams/k8s.webp",
+    blogUrl: "/blogs/cicd-kubernetes-upgrade",
   },
 ];

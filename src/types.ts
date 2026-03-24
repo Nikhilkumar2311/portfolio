@@ -30,6 +30,7 @@ export interface Project {
   githubUrl?: string;
   liveUrl?: string;
   architectureDiagram?: string;
+  blogUrl?: string;
 }
 
 export type EmploymentType = 'full-time' | 'internship' | 'contract' | 'freelance';
