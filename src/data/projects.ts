@@ -47,7 +47,7 @@ export const projects: Project[] = [
     architectureDiagram: "/diagrams/monitoring.webp",
   },
   {
-    title: "Enterprise Kubernetes CI/CD Architecture",
+    title: "Kubernetes CI/CD Architecture",
     description:
       "Highly available, autoscaling Kubernetes architecture with environment separation and automated GitOps-style deployments.",
     status: "completed",
@@ -66,6 +66,6 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Nikhilkumar2311/CI-CD-PIPELINE",
     liveUrl: undefined,
-    architectureDiagram: "/diagrams/monitoring.webp",
+    architectureDiagram: "/diagrams/k8s.webp",
   },
 ];
