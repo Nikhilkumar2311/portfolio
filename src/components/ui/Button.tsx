@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 
 interface ButtonProps {
   children: ReactNode;
-  variant?: 'primary' | 'secondary' | 'outline';
+  variant?: 'primary' | 'secondary' | 'outline' | 'glass';
   href?: string;
   onClick?: () => void;
   className?: string;
@@ -40,6 +40,10 @@ export function Button({
       border border-border text-text-primary
       hover:border-primary hover:text-primary hover:scale-105
       bg-transparent
+    `,
+    glass: `
+      border border-primary/40 text-primary bg-primary/10
+      hover:bg-primary/20 hover:border-primary hover:scale-105
     `,
   };
 

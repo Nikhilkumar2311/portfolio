@@ -230,7 +230,7 @@ export function Projects() {
                                                 </Button>
                                             )}
                                             {project.blogUrl && (
-                                                <Button variant="secondary" href={project.blogUrl} className="text-sm px-4 py-2">
+                                                <Button variant="glass" href={project.blogUrl} className="text-sm px-5 py-2">
                                                     <BookOpen size={16} />
                                                     Read Blog
                                                 </Button>
