@@ -1,5 +1,5 @@
 ---
-title: Evolving Deployments with Kubernetes
+title: Evolving Deployments with Kubernetes for Modern Applications
 slug: cicd-kubernetes-upgrade
 excerpt: How I replaced manual Docker deployments with a fully automated, autoscaling, and highly-available Kubernetes architecture managed by Kustomize and GitHub Actions.
 coverImage: /blogs/cicd-kubernetes-upgrade.webp
