@@ -72,4 +72,27 @@ export const projects: Project[] = [
     architectureDiagram: "/diagrams/k8s.webp",
     blogUrl: "/blogs/cicd-kubernetes-upgrade",
   },
+  {
+    title: "AWS Driven Microservices Architecture & CI/CD",
+    description:
+      "Scalable, Infrastructure-as-Code driven deployment on AWS featuring containerized Python and Node.js microservices with automated GitOps-style delivery.",
+    status: "completed",
+    problem:
+      "Manual infrastructure provisioning and deployment processes created bottlenecks, security vulnerabilities, and inconsistencies across environments for a complex multi-service architecture.",
+    solution:
+      "Engineered a fully declarative infrastructure utilizing Terraform for automated AWS provisioning (VPC, EC2, IAM, ECR). Leveraged zero-trust security principles using IAM instance profiles instead of static credentials, and orchestrated a unified Docker Compose multi-container environment backed by an NGINX reverse proxy for dynamic routing. Integrated GitHub Actions to deliver a highly automated CI/CD pipeline featuring ECR image lifecycle management and automated container deployment.",
+    outcome:
+      "Achieved predictable, immutable deployments with zero manual SSH configuration required. Decreased deployment time by 80%, enhanced security posture through strict IAM integrations, and optimized cloud costs with automated EC2 health checks and ECR image cleanup policies.",
+    techStack: [
+      "AWS EC2 & VPC",
+      "AWS ECR",
+      "Terraform",
+      "Docker Compose",
+      "GitHub Actions",
+    ],
+    githubUrl: undefined,
+    liveUrl: "https://pitchrr.in",
+    architectureDiagram: "/diagrams/aws-architecture.webp",
+    blogUrl: "/blogs/aws-microservices-terraform-cicd",
+  },
 ];
