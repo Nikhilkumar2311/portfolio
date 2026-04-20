@@ -95,4 +95,28 @@ export const projects: Project[] = [
     architectureDiagram: "/diagrams/aws-architecture.webp",
     blogUrl: "/blogs/aws-microservices-terraform-cicd",
   },
+  {
+    title: "Cloud-Native Microservices Architecture",
+    description:
+      "Highly available, event-driven microservices platform deployed on AWS, featuring automated CI/CD, centralized observability, and robust container orchestration with seamless scalability.",
+    status: "completed",
+    problem:
+      "Handling real-time market data, AI chat processing, and portfolio management required a scalable, decentralized system that wouldn't suffer from single points of failure, while maintaining secure and efficient deployment lifecycles across Dev and Prod environments.",
+    solution:
+      "Designed a decoupled, containerized infrastructure using Docker and AWS ECR. Engineered a specialized observability stack (Prometheus, Loki, Promtail, Grafana) for full-system monitoring. Implemented automated CI/CD pipelines using GitHub Actions with strict environment isolation, utilizing Redis for asynchronous worker queues and MongoDB Replication for high database availability.",
+    outcome:
+      "Achieved highly resilient, auto-healing microservices with streamlined, zero-downtime deployments via CI/CD, complete metric visibility, and strict resource management.",
+    techStack: [
+      "AWS ECR & EC2",
+      "Docker & Docker Compose",
+      "GitHub Actions CI/CD",
+      "Prometheus & Grafana",
+      "Loki & Promtail (Logging)",
+      "Node.js Microservices",
+    ],
+    githubUrl: undefined,
+    liveUrl: "https://aarthik.ai",
+    architectureDiagram: "/diagrams/cloud-infrastructure.webp",
+    blogUrl: "/blogs/scaling-microservices-cloud-devops",
+  },
 ];

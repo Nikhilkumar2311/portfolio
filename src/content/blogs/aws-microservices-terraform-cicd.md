@@ -13,7 +13,7 @@ publishedAt: 2026-04-19
 
 ## Building an AWS Microservices Architecture with Terraform & CI/CD
 
-When scaling **Pitchrr** into a robust multi-service architecture (featuring distinct Core, AI, Billing, PDF, and Community microservices), it became clear that manual server provisioning was no longer viable.
+When scaling **Pitchrr** into a robust multi-service architecture, it became clear that manual server provisioning was no longer viable.
 
 Relying on manual AWS console clicks to set up VPCs, IAM roles, and multiple ECR repositories introduced a major limitation:
 
@@ -190,4 +190,4 @@ The system is no longer just deployable-it is architected to scale and evolve sa
 ---
 
 _Check out the live deployment of this architecture:_  
-👉 **[View the live project (Pitchrr)](https://pitchrr.in)**
+👉 **[View the live here](https://pitchrr.in)**
