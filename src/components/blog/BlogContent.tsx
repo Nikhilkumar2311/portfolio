@@ -2,6 +2,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { Mermaid } from './Mermaid';
 
 interface BlogContentProps {
     content: string;
@@ -115,10 +116,17 @@ export function BlogContent({ content }: BlogContentProps) {
                             );
                         }
 
+                        const language = match[1];
+                        const content = String(children).replace(/\n$/, '');
+
+                        if (language === 'mermaid') {
+                            return <Mermaid chart={content} />;
+                        }
+
                         return (
                             <SyntaxHighlighter
                                 style={oneDark}
-                                language={match[1]}
+                                language={language}
                                 PreTag="div"
                                 className="rounded-xl !bg-surface border border-border !my-4"
                                 customStyle={{
@@ -126,7 +134,7 @@ export function BlogContent({ content }: BlogContentProps) {
                                     fontSize: '0.875rem',
                                 }}
                             >
-                                {String(children).replace(/\n$/, '')}
+                                {content}
                             </SyntaxHighlighter>
                         );
                     },
