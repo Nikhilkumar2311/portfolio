@@ -152,19 +152,19 @@ export function BlogContent({ content }: BlogContentProps) {
                     ),
                     // Tables
                     table: ({ children }) => (
-                        <div className="overflow-x-auto my-4">
-                            <table className="w-full border-collapse border border-border rounded-lg">
+                        <div className="overflow-hidden overflow-x-auto my-6 rounded-xl border border-border bg-surface/30">
+                            <table className="w-full border-collapse text-left">
                                 {children}
                             </table>
                         </div>
                     ),
                     th: ({ children }) => (
-                        <th className="border border-border bg-surface px-4 py-2 text-left text-text-primary font-semibold">
+                        <th className="border-b border-border bg-surface px-6 py-3 font-semibold text-text-primary">
                             {children}
                         </th>
                     ),
                     td: ({ children }) => (
-                        <td className="border border-border px-4 py-2 text-text-secondary">
+                        <td className="border-b border-border/50 px-6 py-4 text-text-secondary">
                             {children}
                         </td>
                     ),
