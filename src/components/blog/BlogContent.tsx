@@ -1,8 +1,9 @@
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { Mermaid } from './Mermaid';
+import { useTheme } from '../../context/ThemeContext';
 
 interface BlogContentProps {
     content: string;
@@ -19,8 +20,10 @@ function generateId(text: string): string {
 }
 
 export function BlogContent({ content }: BlogContentProps) {
+    const { theme } = useTheme();
+
     return (
-        <article className="prose prose-invert prose-lg max-w-none">
+        <article className={`prose prose-lg max-w-none ${theme === 'dark' ? 'prose-invert' : ''}`}>
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
@@ -125,13 +128,18 @@ export function BlogContent({ content }: BlogContentProps) {
 
                         return (
                             <SyntaxHighlighter
-                                style={oneDark}
+                                style={theme === 'dark' ? oneDark : oneLight}
                                 language={language}
                                 PreTag="div"
                                 className="rounded-xl !bg-surface border border-border !my-4"
                                 customStyle={{
                                     padding: '1.25rem',
                                     fontSize: '0.875rem',
+                                }}
+                                codeTagProps={{
+                                    style: {
+                                        backgroundColor: 'transparent',
+                                    }
                                 }}
                             >
                                 {content}

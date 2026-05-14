@@ -50,7 +50,7 @@ This is why caching exists.
 
 ---
 
-# The Core Idea Behind Caching
+### The Core Idea Behind Caching
 
 Caching is surprisingly simple.
 
