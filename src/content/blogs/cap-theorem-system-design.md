@@ -539,6 +539,6 @@ Understanding CAP is the beginning of truly understanding distributed systems.
 
 Now that we understand why distributed systems cannot guarantee everything simultaneously, the next question becomes:
 
-If systems sacrifice strong consistency, how do users still experience reliable applications?
+👉If systems sacrifice strong consistency, how do users still experience reliable applications?
 
 In the next article, we’ll explore Consistency Models, and understand how modern systems balance correctness, performance, and user experience at scale.
