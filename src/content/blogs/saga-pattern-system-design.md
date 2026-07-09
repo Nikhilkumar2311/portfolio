@@ -9,7 +9,7 @@ tags:
 publishedAt: 2026-07-07
 ---
 
-### Saga Pattern: Managing Distributed Transactions Without a Shared Database
+## Saga Pattern: Managing Distributed Transactions Without a Shared Database
 
 In the previous article, we learned why mature microservice architectures avoid sharing a single database.
 
