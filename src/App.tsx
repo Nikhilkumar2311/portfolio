@@ -2,9 +2,11 @@ import { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout, HomePage } from './pages';
 
-// Lazy load blog pages - they're not needed on initial load
+// Lazy load pages - they're not needed on initial load
 const BlogListPage = lazy(() => import('./pages/BlogListPage').then(m => ({ default: m.BlogListPage })));
 const BlogPostPage = lazy(() => import('./pages/BlogPostPage').then(m => ({ default: m.BlogPostPage })));
+const ToolsPage = lazy(() => import('./pages/ToolsPage').then(m => ({ default: m.ToolsPage })));
+const ToolPage = lazy(() => import('./pages/ToolPage').then(m => ({ default: m.ToolPage })));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage').then(m => ({ default: m.NotFoundPage })));
 
 // Loading fallback
@@ -28,6 +30,16 @@ function App() {
           <Route path="blogs/:slug" element={
             <Suspense fallback={<PageLoader />}>
               <BlogPostPage />
+            </Suspense>
+          } />
+          <Route path="tools" element={
+            <Suspense fallback={<PageLoader />}>
+              <ToolsPage />
+            </Suspense>
+          } />
+          <Route path="tools/:toolSlug" element={
+            <Suspense fallback={<PageLoader />}>
+              <ToolPage />
             </Suspense>
           } />
           <Route path="*" element={

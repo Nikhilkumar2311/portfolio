@@ -19,6 +19,7 @@ const navLinks: NavItem[] = [
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
   { label: "Blogs", href: "/blogs", isRoute: true },
+  { label: "Tools", href: "/tools", isRoute: true },
 ];
 
 export function Navbar() {
