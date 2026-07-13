@@ -59,7 +59,7 @@ export default function JsonFormatter() {
   };
 
   return (
-    <ConverterLayout title="JSON Formatter" description="Format, validate, and minify JSON. Convert between JSON and YAML.">
+    <ConverterLayout title="JSON Formatter" description="Format, validate, and minify JSON. Convert between JSON and YAML." wide>
       <div className="flex gap-2 p-1 rounded-xl bg-surface border border-border">
         {(['format', 'minify', 'yaml'] as const).map((m) => (
           <button key={m} onClick={() => setMode(m)}
