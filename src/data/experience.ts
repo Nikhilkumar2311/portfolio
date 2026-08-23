@@ -6,8 +6,8 @@ export const experiences: Experience[] = [
     company: "Pocketwise Technologies Private Limited",
     companyInitial: "P",
     logo: '/company/pocketwise.svg',
-    period: "2025 - Present",
-    duration: "~1 Year",
+    period: "Feb 2025 - May 2026",
+    duration: "~1.4 Year",
     employmentType: "full-time",
     description:
       "Worked across DevOps and full-stack development, focusing on building scalable cloud infrastructure, automating CI/CD pipelines, and developing end-to-end web applications.",
