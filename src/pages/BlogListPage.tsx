@@ -28,7 +28,7 @@ export function BlogListPage() {
     return (
         <>
             <SEOHead
-                title="Blog"
+                title="Blogs"
                 description="DevOps insights, tutorials, and learnings. Explore articles on AWS, Docker, Kubernetes, CI/CD, and cloud infrastructure."
                 canonicalUrl="/blogs"
             />
@@ -36,7 +36,7 @@ export function BlogListPage() {
             <section className="min-h-screen py-20 md:py-32">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <SectionTitle
-                        title="Blog"
+                        title="Blogs"
                         subtitle="DevOps insights, tutorials & learnings"
                     />
 
