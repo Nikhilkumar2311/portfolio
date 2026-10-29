@@ -76,6 +76,7 @@ export default function JsonFormatter() {
           </label>
           <textarea id="json-input" value={input} onChange={(e) => setInput(e.target.value)} rows={14}
             placeholder='{"key": "value"}'
+            data-lenis-prevent
             className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary text-sm font-mono focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-y" />
         </div>
         <div>
@@ -89,6 +90,7 @@ export default function JsonFormatter() {
             )}
           </div>
           <textarea readOnly value={output} rows={14}
+            data-lenis-prevent
             className="w-full px-4 py-3 rounded-xl bg-surface border border-border text-text-primary text-sm font-mono resize-y" />
         </div>
       </div>
