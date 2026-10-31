@@ -4,7 +4,7 @@ import {
   FileText, FileSpreadsheet,
   QrCode, Braces, Binary, Fingerprint, Hash,
   Palette, Eye, Lock, Code,
-  Link, Link2, Clock, FileOutput,
+  Link, Link2, Clock, FileOutput, Workflow,
 } from 'lucide-react';
 import type { ToolCategory, ToolDefinition, ToolCategoryId } from '../types/toolTypes';
 
@@ -237,6 +237,16 @@ export const tools: ToolDefinition[] = [
     icon: Eye,
     category: 'utilities',
     component: () => import('../components/tools/converters/MarkdownPreview').then(m => ({ default: m.default })),
+  },
+  {
+    slug: 'mermaid-renderer',
+    title: 'Mermaid Diagram Renderer',
+    description: 'Render, edit, and export Mermaid diagrams in real-time. Export as SVG or PNG.',
+    icon: Workflow,
+    category: 'utilities',
+    inputFormats: ['MERMAID', 'MMD', 'TXT'],
+    outputFormats: ['SVG', 'PNG'],
+    component: () => import('../components/tools/converters/MermaidRenderer').then(m => ({ default: m.default })),
   },
   {
     slug: 'password-generator',
