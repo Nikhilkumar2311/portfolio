@@ -8,7 +8,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test": "npx tsx tests/mermaid-compiler.test.ts"
   },
   "dependencies": {
     "@ffmpeg/ffmpeg": "^0.12.15",

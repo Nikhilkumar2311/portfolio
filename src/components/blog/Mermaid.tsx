@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import mermaid from 'mermaid';
 import { useTheme } from '../../context/ThemeContext';
+import { compileMermaid } from '../../lib/mermaid';
 
 interface MermaidProps {
     chart: string;
@@ -41,12 +42,15 @@ export function Mermaid({ chart }: MermaidProps) {
                 // Generate a new ID on theme change to prevent mermaid caching the old theme colors
                 const newId = `mermaid-${Math.random().toString(36).substring(2, 9)}`;
                 idRef.current = newId;
+
+                const compilation = compileMermaid(chart);
+                const codeToRender = compilation.isValid ? compilation.code : chart;
                 
-                const { svg } = await mermaid.render(newId, chart);
+                const { svg } = await mermaid.render(newId, codeToRender);
                 setSvgContent(svg);
             } catch (error) {
                 console.error("Failed to render mermaid chart", error);
-                setSvgContent(`<div class="text-red-500">Failed to render flowchart</div>`);
+                setSvgContent(`<div class="text-red-500 text-xs font-mono p-4">Failed to render diagram</div>`);
             }
         };
 

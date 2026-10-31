@@ -2,14 +2,16 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import mermaid from 'mermaid';
 import { ConverterLayout } from '..';
 import { useTheme } from '../../../context/ThemeContext';
+import { compileMermaid, formatExternalError } from '../../../lib/mermaid';
+import type { DiagnosticError } from '../../../lib/mermaid';
 import {
   Copy,
   Check,
   RotateCw,
+  RotateCcw,
   Download,
   ZoomIn,
   ZoomOut,
-  Maximize2,
   AlertCircle,
   CheckCircle2,
   Trash2,
@@ -17,6 +19,8 @@ import {
   FileImage,
   Palette,
   Sparkles,
+  Move,
+  Lightbulb,
 } from 'lucide-react';
 
 interface DiagramSample {
@@ -27,6 +31,30 @@ interface DiagramSample {
 }
 
 const SAMPLES: DiagramSample[] = [
+  {
+    id: 'lottie-pipeline',
+    label: 'Lottie Preview & Web Architecture (Flowchart)',
+    category: 'Architecture',
+    code: `flowchart TB
+    subgraph Browser/Client
+      U[User Uploads Lottie JSON or .lottie] --> PV[Lottie Previewer Canvas]
+      PV --> J[JavaScript Renderer (Lottie Web)]
+      Edit[Lottie Editor UI (Colors/Timeline/JSON)] --> J
+      Assets[Asset Manager UI] --> Parser[JSON Parser]
+      Parser --> |Remove/Add images| J
+      IMG[Image Compressor (Canvas/WASM)] -.-> Parser
+      Export[Client-side Export (JSON, GIF)] -.-> J
+    end
+
+    subgraph Server/Backend
+      Analytics[(Usage Tracking)]
+      API[API / Paid Tasks]
+    end
+
+    U --> Analytics
+    U --> API
+    PV -.-> Analytics`,
+  },
   {
     id: 'cache-flowchart',
     label: 'Cache Architecture (Flowchart)',
@@ -169,10 +197,17 @@ export default function MermaidRenderer() {
   const [selectedSample, setSelectedSample] = useState<string>(SAMPLES[0].id);
   const [diagramTheme, setDiagramTheme] = useState<ThemeOption>('auto');
   const [svgContent, setSvgContent] = useState<string>('');
+  const [diagnostic, setDiagnostic] = useState<DiagnosticError | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isValid, setIsValid] = useState<boolean | null>(null);
   const [isRendering, setIsRendering] = useState<boolean>(false);
+
+  // Viewport Zoom & Pan navigation state
   const [zoom, setZoom] = useState<number>(1);
+  const [pan, setPan] = useState<{ x: number; y: number }>({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+  const isMouseDownRef = useRef<boolean>(false);
+  const dragStartRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
   // Clipboard copy states
   const [copiedCode, setCopiedCode] = useState(false);
@@ -188,12 +223,24 @@ export default function MermaidRenderer() {
       if (!trimmed) {
         setSvgContent('');
         setError(null);
+        setDiagnostic(null);
         setIsValid(null);
         setIsRendering(false);
         return;
       }
 
       setIsRendering(true);
+
+      // 1. Compile through our robust parser & AST generator
+      const compilation = compileMermaid(trimmed);
+      if (!compilation.isValid) {
+        setIsValid(false);
+        setDiagnostic(compilation.error || null);
+        setError(compilation.error?.message || 'Syntax error in Mermaid diagram');
+        setIsRendering(false);
+        return;
+      }
+
       const isDark = themeMode === 'auto' ? theme === 'dark' : themeMode === 'dark';
 
       try {
@@ -231,16 +278,17 @@ export default function MermaidRenderer() {
         renderCounterRef.current += 1;
         const renderId = `mermaid-tool-${renderCounterRef.current}`;
 
-        const { svg } = await mermaid.render(renderId, trimmed);
+        // Render canonical code produced by our compiler
+        const { svg } = await mermaid.render(renderId, compilation.code);
         setSvgContent(svg);
         setError(null);
+        setDiagnostic(null);
         setIsValid(true);
       } catch (err: unknown) {
         setIsValid(false);
-        const rawMessage = err instanceof Error ? err.message : String(err);
-        // Clean up common verbose mermaid error prefixes if needed
-        const cleanMessage = rawMessage.replace(/Error: /g, '').trim();
-        setError(cleanMessage || 'Syntax error in Mermaid diagram');
+        const formatted = formatExternalError(err, trimmed);
+        setDiagnostic(formatted);
+        setError(formatted.message || 'Syntax error in Mermaid diagram');
       } finally {
         setIsRendering(false);
         // Clean up any stray error / temp divs created by Mermaid in document.body
@@ -271,6 +319,7 @@ export default function MermaidRenderer() {
       setSelectedSample(sample.id);
       setCode(sample.code);
       setZoom(1);
+      setPan({ x: 0, y: 0 });
     }
   };
 
@@ -279,6 +328,7 @@ export default function MermaidRenderer() {
     const sample = SAMPLES.find((s) => s.id === selectedSample) || SAMPLES[0];
     setCode(sample.code);
     setZoom(1);
+    setPan({ x: 0, y: 0 });
   };
 
   // Clear editor
@@ -286,7 +336,9 @@ export default function MermaidRenderer() {
     setCode('');
     setSvgContent('');
     setError(null);
+    setDiagnostic(null);
     setIsValid(null);
+    setPan({ x: 0, y: 0 });
   };
 
   // Copy Mermaid code
@@ -347,7 +399,6 @@ export default function MermaidRenderer() {
     const img = new Image();
 
     img.onload = () => {
-      // Background fill so transparent text remains readable
       ctx.fillStyle = isDark ? '#1a202c' : '#ffffff';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
@@ -370,9 +421,46 @@ export default function MermaidRenderer() {
   };
 
   // Zoom controls
-  const handleZoomIn = () => setZoom((prev) => Math.min(2.5, +(prev + 0.25).toFixed(2)));
-  const handleZoomOut = () => setZoom((prev) => Math.max(0.5, +(prev - 0.25).toFixed(2)));
-  const handleResetZoom = () => setZoom(1);
+  const handleZoomIn = () => setZoom((prev) => Math.min(3, +(prev + 0.25).toFixed(2)));
+  const handleZoomOut = () => setZoom((prev) => Math.max(0.4, +(prev - 0.25).toFixed(2)));
+  const handleResetView = () => {
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+  };
+
+  // Drag and Pan navigation handlers
+  const handleMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.button !== 0) return; // Left mouse click only
+    isMouseDownRef.current = true;
+    setIsDragging(true);
+    dragStartRef.current = {
+      x: e.clientX - pan.x,
+      y: e.clientY - pan.y,
+    };
+  };
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!isMouseDownRef.current) return;
+    e.preventDefault();
+    setPan({
+      x: e.clientX - dragStartRef.current.x,
+      y: e.clientY - dragStartRef.current.y,
+    });
+  };
+
+  const handleMouseUp = () => {
+    isMouseDownRef.current = false;
+    setIsDragging(false);
+  };
+
+  // Mouse wheel zoom when Ctrl or Meta is held, or normal smooth zoom
+  const handleWheel = (e: React.WheelEvent<HTMLDivElement>) => {
+    if (e.ctrlKey || e.metaKey) {
+      e.preventDefault();
+      const zoomDelta = e.deltaY < 0 ? 0.15 : -0.15;
+      setZoom((prev) => Math.min(3, Math.max(0.4, +(prev + zoomDelta).toFixed(2))));
+    }
+  };
 
   const lineCount = code ? code.split('\n').length : 0;
   const charCount = code.length;
@@ -496,17 +584,17 @@ export default function MermaidRenderer() {
             onChange={(e) => setCode(e.target.value)}
             data-lenis-prevent
             spellCheck={false}
-            placeholder={`graph TD\n    A[Start] --> B[Process]\n    B --> C[End]`}
+            placeholder={`flowchart TB\n    A[Start] --> B[Process]\n    B --> C[End]`}
             className="w-full px-4 py-3.5 rounded-xl bg-surface border border-border text-text-primary text-sm font-mono leading-relaxed focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all resize-y"
-            style={{ minHeight: '540px' }}
+            style={{ minHeight: '560px' }}
           />
 
           <div className="flex items-center justify-between text-[11px] text-text-secondary px-1">
-            <span>Supports Flowcharts, Sequences, Class diagrams, State diagrams, Git graphs &amp; ER diagrams.</span>
+            <span>Flowcharts with special characters &amp; parentheses, Sequences, Classes, State &amp; Git graphs.</span>
           </div>
         </div>
 
-        {/* Right Column: Live Preview */}
+        {/* Right Column: Live Interactive Preview */}
         <div className="flex flex-col gap-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
@@ -528,11 +616,15 @@ export default function MermaidRenderer() {
               ) : null}
             </div>
 
-            {/* Zoom Controls */}
+            {/* Navigation & Zoom Controls */}
             <div className="flex items-center gap-1">
+              <span className="hidden sm:inline-flex items-center gap-1 text-[10px] text-text-secondary mr-1 px-1.5 py-0.5 rounded bg-background border border-border">
+                <Move size={10} /> Drag to pan
+              </span>
+
               <button
                 onClick={handleZoomOut}
-                disabled={zoom <= 0.5}
+                disabled={zoom <= 0.4}
                 title="Zoom Out"
                 className="p-1 rounded text-text-secondary hover:text-primary transition-colors disabled:opacity-40 cursor-pointer"
               >
@@ -543,44 +635,95 @@ export default function MermaidRenderer() {
               </span>
               <button
                 onClick={handleZoomIn}
-                disabled={zoom >= 2.5}
+                disabled={zoom >= 3.0}
                 title="Zoom In"
                 className="p-1 rounded text-text-secondary hover:text-primary transition-colors disabled:opacity-40 cursor-pointer"
               >
                 <ZoomIn size={14} />
               </button>
               <button
-                onClick={handleResetZoom}
-                title="Reset Zoom (100%)"
+                onClick={handleResetView}
+                title="Reset View & Center Diagram"
                 className="p-1 rounded text-text-secondary hover:text-primary transition-colors cursor-pointer"
               >
-                <Maximize2 size={13} />
+                <RotateCcw size={13} />
               </button>
             </div>
           </div>
 
-          {/* Diagram Preview Area */}
+          {/* Interactive Drag & Pan Preview Viewport */}
           <div
             ref={previewContainerRef}
             data-lenis-prevent
-            className="w-full rounded-xl bg-surface border border-border overflow-auto flex flex-col items-center justify-start p-6 transition-colors"
-            style={{ minHeight: '540px', maxHeight: '720px' }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseUp}
+            onWheel={handleWheel}
+            className={`relative w-full rounded-xl bg-surface border border-border overflow-hidden select-none transition-colors ${
+              isDragging ? 'cursor-grabbing' : 'cursor-grab'
+            }`}
+            style={{ minHeight: '560px', height: '560px' }}
           >
-            {error ? (
-              <div className="w-full my-auto flex flex-col items-center justify-center p-6 text-center">
+            {/* Visual panning indicator pill */}
+            {(pan.x !== 0 || pan.y !== 0) && (
+              <button
+                onClick={handleResetView}
+                className="absolute bottom-3 right-3 z-10 text-[10px] px-2.5 py-1 rounded-lg bg-surface/90 backdrop-blur border border-border text-text-secondary hover:text-primary transition-colors shadow-sm flex items-center gap-1 cursor-pointer"
+                title="Center diagram"
+              >
+                <RotateCcw size={10} /> Center View
+              </button>
+            )}
+
+            {diagnostic ? (
+              <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center overflow-y-auto cursor-default select-text">
                 <div className="w-12 h-12 rounded-full bg-red-400/10 text-red-400 flex items-center justify-center mb-3">
                   <AlertCircle size={24} />
                 </div>
-                <h4 className="text-sm font-semibold text-red-400 mb-1">Diagram Rendering Error</h4>
-                <p className="text-xs text-text-secondary max-w-md font-mono bg-background/60 p-3 rounded-lg border border-border break-words text-left">
-                  {error}
+                <div className="flex items-center gap-2 mb-1">
+                  <h4 className="text-sm font-semibold text-red-400">Mermaid Syntax Error</h4>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-red-400/10 text-red-400 border border-red-400/20 font-mono">
+                    Line {diagnostic.line}:{diagnostic.column}
+                  </span>
+                </div>
+                <p className="text-xs text-text-primary font-medium max-w-md mb-3">
+                  {diagnostic.message}
                 </p>
-                <p className="text-[11px] text-text-secondary mt-3">
-                  Check your Mermaid syntax (missing arrows, unclosed brackets, or invalid keywords).
-                </p>
+
+                {/* Formatted Code Snippet */}
+                {diagnostic.snippet && (
+                  <div className="w-full max-w-lg text-left font-mono text-xs bg-background/90 p-3.5 rounded-lg border border-border text-text-primary overflow-x-auto whitespace-pre shadow-inner mb-3">
+                    {diagnostic.snippet}
+                  </div>
+                )}
+
+                {/* Unexpected and Expected details */}
+                {diagnostic.unexpected && (
+                  <div className="flex items-center gap-3 text-[11px] text-text-secondary font-mono mb-2">
+                    <span>
+                      Unexpected: <span className="text-red-400 font-semibold">{diagnostic.unexpected}</span>
+                    </span>
+                    {diagnostic.expected && (
+                      <span>
+                        Expected: <span className="text-green-400 font-semibold">{diagnostic.expected}</span>
+                      </span>
+                    )}
+                  </div>
+                )}
+
+                {/* Actionable Suggestion */}
+                {diagnostic.suggestion && (
+                  <div className="max-w-lg w-full flex items-start gap-2 p-3 rounded-lg bg-primary/5 border border-primary/20 text-xs text-text-secondary text-left mt-1">
+                    <Lightbulb size={15} className="text-primary mt-0.5 shrink-0" />
+                    <span>
+                      <strong className="text-text-primary">Suggestion:</strong> {diagnostic.suggestion}
+                    </span>
+                  </div>
+                )}
               </div>
             ) : !code.trim() ? (
-              <div className="w-full my-auto flex flex-col items-center justify-center p-8 text-center text-text-secondary">
+              <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center text-text-secondary cursor-default select-text">
                 <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-3">
                   <Sparkles size={24} />
                 </div>
@@ -597,10 +740,11 @@ export default function MermaidRenderer() {
               </div>
             ) : (
               <div
-                className="w-full flex justify-center transition-transform duration-150"
+                className="w-full h-full flex justify-center items-center pointer-events-none"
                 style={{
-                  transform: `scale(${zoom})`,
-                  transformOrigin: 'top center',
+                  transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+                  transformOrigin: 'center center',
+                  transition: isDragging ? 'none' : 'transform 100ms ease-out',
                 }}
                 dangerouslySetInnerHTML={{ __html: svgContent }}
               />
@@ -611,4 +755,3 @@ export default function MermaidRenderer() {
     </ConverterLayout>
   );
 }
-
